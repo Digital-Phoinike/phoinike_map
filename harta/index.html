@@ -1,0 +1,62 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <title>Digital Phoenike</title> 
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link rel="stylesheet" href="./leaflet/leaflet.css" /> 
+    <script src="./leaflet/leaflet.js"></script> 
+    <script src="./paths.js"></script>
+    <script src="./buildings.js"></script>
+    <script src="./places.js"></script>
+    <script src="./placesAL.js"></script>
+    <script src="./walls.js"></script>
+    <script src="./streets.js"></script>
+    <script src="./entrance.js"></script>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            position: fixed;
+        }
+        #map {
+            height: 100%;
+            width: 100vw;
+        }
+        select {
+            z-index: 1000;
+            position: absolute;
+            bottom: 35px;
+            left: 1px;
+            padding: 5px;
+            color: white;
+            font-size: 18px;
+        }
+    </style>
+    <style type="text/css" media="screen">
+        html {
+            -webkit-text-size-adjust: none;
+            touch-action: none; /*prevent user scaling*/
+        }
+    </style>
+</head>
+<body>
+    <div id="map">
+        <select id="languages" style="border: 2px solid white; background: rgba(94, 8, 11, .8); border-radius: 6px">
+            <option value="en">English</option>
+            <option value="al">Shqip</option>
+        </select>
+    </div>
+    <script type="text/javascript" src="digitalfiniq.js"></script>
+    <script>document
+            .getElementById('languages')
+            .addEventListener('change', event => {
+                const language = event.target.value;
+                changeLanguage(language);
+                updateLocationLanguage(language);
+            });
+    </script>
+</body>
+</html>
+
