@@ -1,9 +1,9 @@
 ﻿var hash = window.location.hash.substr(1);
 var mapOptions = {
      tap: false,
-     center: [39.91381644734087, 20.055112781752946], 
-     zoom: 16, 
-     maxZoom : 20,  
+     center: [39.91381644734087, 20.055112781752946],
+     zoom: 16,
+     maxZoom : 20,
      minZoom: 10,
      touchZoom: true,
      maxBounds: [[39.690784799474905, 19.81299812520738],[40.098806006678494, 20.262505016975012]],
@@ -269,11 +269,11 @@ map.whenReady(function () {
         if (hash == "2") {
             placesImported._layers[29].openPopup();
         }
-        //Agora and Basilica 
+        //Agora and Basilica
         if (hash == "3") {
             placesImported._layers[30].openPopup();
         }
-        //House of the Frescoes 
+        //House of the Frescoes
         if (hash == "4") {
             placesImported._layers[31].openPopup();
         }
@@ -324,9 +324,9 @@ function onLocationFound(e) {
         }
     }
 }
- 
+
 function onLocationError(e) {
-    if (needToNotifySettings == true) {
+    if (window.innerWidth>400px && needToNotifySettings == true) {
         alert("If you would like to see your live position on the map, please update your device's settings to allow location services and refresh the page.");
         needToNotifySettings = false;
     }
