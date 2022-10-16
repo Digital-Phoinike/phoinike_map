@@ -326,16 +326,20 @@ function onLocationFound(e) {
 }
 
 function onLocationError(e) {
-    if (window.innerWidth>400px && needToNotifySettings == true) {
+
+    if (needToNotifySettings == true) {
         alert("If you would like to see your live position on the map, please update your device's settings to allow location services and refresh the page.");
         needToNotifySettings = false;
     }
  }
 
+
+var width=window.innerWidth;
+if (width<650) {
+map.locate({ setView: false, watch: true });
 map.on('locationfound', onLocationFound);
 map.on('locationerror', onLocationError);
-
-map.locate({ setView: false, watch: true });
+};
 
 function updateLocationLanguage(lang) {
     if (positionShown == true) {
@@ -347,3 +351,33 @@ function updateLocationLanguage(lang) {
         }
     }
 }
+
+var arbitraryValuesSlider = document.getElementById('slider');
+var arbitraryValuesForSlider = ['4th century BCE', '3rd century BCE', '2nd century BCE', 'Roman Period'];
+var format = {
+    to: function(value) {
+        return arbitraryValuesForSlider[Math.round(value)];
+    },
+    from: function (value) {
+        return arbitraryValuesForSlider.indexOf(value);
+    }
+};
+
+noUiSlider.create(arbitraryValuesSlider, {
+    // start values are parsed by 'format'
+    start: ['4th century BCE'],
+    range: { min: 0, max: arbitraryValuesForSlider.length - 1 },
+    step: 1,
+    tooltips: true,
+    format: format,
+
+});
+//disable panning while sliding
+      slider.addEventListener('mouseover', function () {
+              map.dragging.disable();
+          });
+
+          // Re-enable dragging when user's cursor leaves the element
+      slider.addEventListener('mouseout', function () {
+            map.dragging.enable();
+          });
