@@ -9,11 +9,13 @@
   <link rel="stylesheet" href="./leaflet/leaflet.css" />
   <script src="./leaflet/leaflet.js"></script>
 
-  <script src="contextualSites.js"</script>
-  <!-- Load plugins locally
+  <script src="./contextualSites.js"></script>
+  <!-- Load plugins locally -->
 
 	<link rel="stylesheet" href="./plugins/Leaflet.Pancontrol/src/L.Control.Pan.css" />
 	<script src="./plugins/Leaflet.Pancontrol/src/L.Control.Pan.js"></script>
+  <link rel="stylesheet" href="./plugins/Leaflet.Legend/src/leaflet.legend.css" />
+  <script type="text/javascript" src="./plugins/Leaflet.Legend/src/leaflet.legend.js"></script>
 
   <link rel="stylesheet" href="./plugins/leaflet-search-master/src/leaflet-search.css" />
   <script src="./plugins/leaflet-search-master/src/leaflet-search.js"></script>
@@ -21,8 +23,11 @@
   <link rel="stylesheet" href="./plugins/noUiSlider/distribute/nouislider.min.css" />
   <script src="./plugins/noUiSlider/distribute/nouislider.min.js"></script>
 
-   -->
 <style>
+.leaflet-control-pan a {background-color: rgba(94, 8, 11, .8);}
+.leaflet-control-pan {color:white;}
+#overlay {position: absolute; width: 40%; height: 5%; top:10px; left:30%; background-color: rgba(0,0,0,0.5); z-index: 800; color:white; text-align:center; font-size:22px;
+}
   </style>
 
 </head>
