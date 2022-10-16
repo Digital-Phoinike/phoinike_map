@@ -6,7 +6,7 @@ var mapOptions = {
      maxZoom : 20,
      minZoom: 5,
      touchZoom: true,
-     maxBounds: [[39.690784799474905, 19.81299812520738],[40.098806006678494, 20.262505016975012]],
+     maxBounds: [[39, 19],[41, 21]],
  };
  var map = L.map('map', mapOptions);
  L.control.pan().addTo(map);

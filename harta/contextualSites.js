@@ -142,7 +142,7 @@ var contextualSites = {
 			},
 			"properties" : {
 				"OBJECTID" : 12,
-				"Location" : "The Castle of Borsh\r\nThe Castle of Borsh\r\nThe Castle of Borsh",
+				"Location" : "The Castle of Borsh",
 				"Type" : "Possible Site"
 			}
 		}
