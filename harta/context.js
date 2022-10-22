@@ -17,7 +17,7 @@ var mapOptions = {
    }).addTo(map);
 
 var allsites =  L.geoJSON(contextualSites, {
-  onEachFeature:popUp,
+  onEachFeature:popUpSites,
   pointToLayer: function (feature, latlng) {
     var markerStyle = {
         fillColor: getColor(feature.properties.Type),
@@ -30,7 +30,7 @@ var allsites =  L.geoJSON(contextualSites, {
     return L.circleMarker(latlng, markerStyle);}
   }).addTo(map);
 
-function popUp(f,l) {
+function popUpSites(f,l) {
   var out = [];
   //adds spaces in between entries
   if (f.properties) {

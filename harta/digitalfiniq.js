@@ -7,8 +7,10 @@ var mapOptions = {
      minZoom: 10,
      touchZoom: true,
      maxBounds: [[39.690784799474905, 19.81299812520738],[40.098806006678494, 20.262505016975012]],
+     fullscreenControl: true
  }
 var map = new L.map('map', mapOptions);
+L.control.pan().addTo(map);
 var mapWidth = map.getSize().x;
 var mapHeight = map.getSize().y;
 var popUpWidth = mapWidth * 0.8;
@@ -17,16 +19,23 @@ var imageWidth = popUpWidth * 0.8;
 var imageHeight = imageWidth * 0.6;
 var images = [null, "image1.png", "image2.png", "image3.png", "image4.png", "image5.png", "image6.png", "image7.png", "image8.png", "image9.png"];
 var currentImage = null;
+var eraSlider = document.getElementById('slider');
 var Esri_WorldImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
             maxNativeZoom: 17,
             maxZoom: 20,
             attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'});
-var placesImported = L.geoJSON(places, {
-        onEachFeature: popUpPlaces
+
+var openStreetMap = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+                    maxNativeZoom:17,
+                    maxZoom:20
+                    });
+
+var numFilter=3;
+var placesImported = L.geoJson(places, {
+  onEachFeature: popUpPlaces
 });
-var placesALImported = L.geoJSON(placesAL, {
-    onEachFeature: popUpPlacesAL
-});
+
 var entranceImported = L.geoJSON(entrance, {
     onEachFeature: popUpEntrance
 });
@@ -77,7 +86,8 @@ var entrancePopupAL = "<center><b>Foinike E Lashtë</b></center><br>Vendbanimi i
 var english = true;
 var entranceMarkerAL;
 var baseLayers = {
-    "Satellite Imagery": Esri_WorldImagery
+    "Satellite Imagery": Esri_WorldImagery,
+    "Street Map": openStreetMap
 };
 var clusterLayers = {
     "Walking Path": pathsImported,
@@ -91,16 +101,65 @@ var needToNotifyDistance = true;
 var needToNotifySettings = true;
 var controls = L.control.layers(baseLayers, clusterLayers).addTo(map);
 
+
+
 Esri_WorldImagery.addTo(map);
 map.addLayer(placesImported);
 map.addLayer(wallsImported);
 map.addLayer(pathsImported);
+
 entranceMarker = new L.Marker([39.91351259783837, 20.059624328713472], { icon: infoIcon }).bindPopup(entrancePopup, { maxHeight: 200, maxWidth: 200, closeOnClick: true }).addTo(map);
+
+
+var allSites =  L.geoJSON(contextualSites, {
+  onEachFeature: function (feature, layer) {
+    layer.bindTooltip(feature.properties.Location);
+  },
+  pointToLayer: function (feature, latlng) {
+    var markerStyle = {
+        fillColor: getColor(feature.properties.Type),
+        color: "#FFF",
+        fillOpacity: 1,
+        opacity: 0.5,
+        weight: 1,
+        radius: 10
+    };
+    return L.circleMarker(latlng, markerStyle);}
+  });
+
+function popUpSites(f,l) {
+  var out = [];
+  //adds spaces in between entries
+  if (f.properties) {
+    out.push('<b>Name: </b>' + f.properties.Location);
+    out.push('<b>Site Type: </b>' + f.properties.Type);
+    out.push('<a href=#>Link to Page?</a>');
+    l.bindPopup(out.join("<br />"));
+  }
+};
+
+function getColor(type) {
+    return  type == "Site" ? '#000000' :
+        type == "Finiq"  ? '#880808' :
+        type == "Possible Site" ? '#BF40BF' :
+                        '#252525';
+}
+
+
 
 function changeLanguage(lang) {
     if (lang == "en") {
-        map.removeLayer(placesALImported);
-        map.addLayer(placesImported);
+      eraSlider.noUiSlider.destroy();
+        map.removeLayer(placesImported);
+        placesImported = new L.geoJson(places,{
+          onEachFeature:popUpPlaces,
+          filter:
+          function(feature, layer) {
+            return (feature.properties.timelineNumber <= numFilter);
+          },
+        }).addTo(map);
+
+
         map.removeLayer(entranceMarkerAL);
         entranceMarker = new L.Marker([39.91351259783837, 20.059624328713472], { icon: infoIcon }).bindPopup(entrancePopup, { maxHeight: 200, maxWidth: 200, closeOnClick: true }).addTo(map);
         english = true;
@@ -112,14 +171,119 @@ function changeLanguage(lang) {
             "Ancient Streets": streetsImported
         };
         baseLayers = {
-            "Satellite Imagery": Esri_WorldImagery
+            "Satellite Imagery": Esri_WorldImagery,
+            "Street Map": openStreetMap
         };
         controls = L.control.layers(baseLayers, clusterLayers).addTo(map);
+
+
+        noUiSlider.create(eraSlider, {
+            start: [numFilter],
+            step:1,
+            range: {
+                'min': [0],
+                'max': [3]
+            },
+            tooltips:true,
+            format: {
+              to: function(value) {
+              // Math.round and -1, so 1.00 => 0, 2.00 => 2, etc.
+
+              return ['4th century BCE', '3rd century BCE', '2nd century BCE', 'Roman Period'][Math.round(value)];
+        },
+            from: Number
+            }
+        });
+        eraSlider.noUiSlider.on('change', function (values, handle) {
+            eraFilter = values[handle];
+
+            if (english) {
+            numFilter = getENFilterNumber(eraFilter);
+        }
+        else {
+          numFilter = getALFilterNumber(eraFilter);
+        }
+
+            map.removeLayer(placesImported);
+            map.removeLayer(buildingsImported);
+            controls.remove();
+            console.log(english);
+
+            if (english) {
+            placesImported = new L.geoJson(places,{
+              onEachFeature:popUpPlaces,
+              filter:
+              function(feature, layer) {
+                return (feature.properties.timelineNumber <= numFilter);
+              },
+          }).addTo(map);
+        }
+        else {
+          placesImported = new L.geoJson(places,{
+            onEachFeature:popUpPlacesAL,
+            filter:
+            function(feature, layer) {
+              return (feature.properties.timelineNumber <= numFilter);
+            },
+          }).addTo(map);
+
+        }
+
+          buildingsImported = new L.geoJSON(buildings, {
+              style: {
+                  weight: 1,
+                  color: "black",
+                  opacity: .5,
+                  fillOpacity: .3
+                },
+            filter:
+            function(feature, layer) {
+              return (feature.properties.numFilter <= numFilter);
+            },
+          }).addTo(map);
+
+          if (english) {
+          clusterLayers = {
+              "Walking Path": pathsImported,
+              "Ancient Walls": wallsImported,
+              "Ancient Buildings": buildingsImported,
+              "Ancient Streets": streetsImported
+          };
+          baseLayers = {
+              "Satellite Imagery": Esri_WorldImagery
+          };
+          }
+          else {
+            clusterLayers = {
+                "Rrugë Këmbësore": pathsImported,
+                "Muret e Lashta": wallsImported,
+                "Godinat e Lashta": buildingsImported,
+                "Rrugët e Lashta": streetsImported
+            };
+            baseLayers = {
+                "Imazhe Satelitore": Esri_WorldImagery,
+                "Street Map": openStreetMap
+            };
+
+          }
+
+          controls = L.control.layers(baseLayers, clusterLayers).addTo(map);
+
+
+        });
     }
     if (lang == "al") {
-        map.removeLayer(placesImported);
-        map.addLayer(placesALImported);
-        map.removeLayer(entranceMarker);
+      eraSlider.noUiSlider.destroy();
+      map.removeLayer(placesImported);
+      placesImported = new L.geoJson(places,{
+        onEachFeature:popUpPlacesAL,
+        filter:
+        function(feature, layer) {
+          return (feature.properties.timelineNumber <= numFilter);
+        },
+      }).addTo(map);
+
+      map.removeLayer(entranceMarker);
         entranceMarkerAL = new L.Marker([39.91351259783837, 20.059624328713472], { icon: infoIconAl }).bindPopup(entrancePopupAL, { maxHeight: 200, maxWidth: 200, closeOnClick: true }).addTo(map);
         english = false;
         controls.remove();
@@ -133,6 +297,104 @@ function changeLanguage(lang) {
             "Imazhe Satelitore": Esri_WorldImagery
         };
         controls = L.control.layers(baseLayers, clusterLayers).addTo(map);
+
+        noUiSlider.create(eraSlider, {
+            start: [numFilter],
+            step:1,
+            range: {
+                'min': [0],
+                'max': [3]
+            },
+            tooltips:true,
+            format: {
+              to: function(value) {
+              // Math.round and -1, so 1.00 => 0, 2.00 => 2, etc.
+
+          return ['shekulli 4 p.e.s', 'shekulli 3 p.e.s','shekulli 2 p.e.s', 'Periudha romake'][Math.round(value)];
+        }
+            ,
+            from: Number
+            }
+        });
+        eraSlider.noUiSlider.on('change', function (values, handle) {
+            eraFilter = values[handle];
+
+            if (english) {
+            numFilter = getENFilterNumber(eraFilter);
+        }
+        else {
+          numFilter = getALFilterNumber(eraFilter);
+        }
+
+            map.removeLayer(placesImported);
+            map.removeLayer(buildingsImported);
+            controls.remove();
+            console.log(english);
+
+            if (english) {
+            placesImported = new L.geoJson(places,{
+              onEachFeature:popUpPlaces,
+              filter:
+              function(feature, layer) {
+                return (feature.properties.timelineNumber <= numFilter);
+              },
+          }).addTo(map);
+        }
+        else {
+          placesImported = new L.geoJson(places,{
+            onEachFeature:popUpPlacesAL,
+            filter:
+            function(feature, layer) {
+              return (feature.properties.timelineNumber <= numFilter);
+            },
+          }).addTo(map);
+
+        }
+
+          buildingsImported = new L.geoJSON(buildings, {
+              style: {
+                  weight: 1,
+                  color: "black",
+                  opacity: .5,
+                  fillOpacity: .3
+                },
+            filter:
+            function(feature, layer) {
+              return (feature.properties.numFilter <= numFilter);
+            },
+          }).addTo(map);
+
+          if (english) {
+          clusterLayers = {
+              "Walking Path": pathsImported,
+              "Ancient Walls": wallsImported,
+              "Ancient Buildings": buildingsImported,
+              "Ancient Streets": streetsImported
+          };
+          baseLayers = {
+              "Satellite Imagery": Esri_WorldImagery,
+              "Street Map": openStreetMap
+          };
+          }
+          else {
+            clusterLayers = {
+                "Rrugë Këmbësore": pathsImported,
+                "Muret e Lashta": wallsImported,
+                "Godinat e Lashta": buildingsImported,
+                "Rrugët e Lashta": streetsImported
+            };
+            baseLayers = {
+                "Imazhe Satelitore": Esri_WorldImagery,
+                "Street Map": openStreetMap
+            };
+
+          }
+
+          controls = L.control.layers(baseLayers, clusterLayers).addTo(map);
+
+
+        });
+
     }
 }
 
@@ -158,12 +420,12 @@ function popUpPlacesAL(f, l) {
     var myImageW = imageWidth;
     var myImageH = imageHeight;
     if (f.properties) {
-        out.push('<b><u>' + f.properties.Name + '</u></b>');
-        out.push('<br><b>Data e ndërtimit: </b>' + f.properties.Date);
+        out.push('<b><u>' + f.properties.ALName + '</u></b>');
+        out.push('<br><b>Data e ndërtimit: </b>' + f.properties.ALDate);
         if (f.properties.ThreeD) {
             out.push('<br><b>Modeli 3D: </b>' + '<a href="' + f.properties.ThreeD + '"target="_blank">Hape në një faqe tjetër</a>');
         }
-        out.push('<br><b>Përshkrimi: </b>' + f.properties.Descriptio + '<br><center>');
+        out.push('<br><b>Përshkrimi: </b>' + f.properties.ALDescriptio + '<br><center>');
         l.bindPopup(out.join("<br/>"), { maxHeight: popUpHeight, maxWidth: popUpWidth, closeOnClick: true });
     }
 }
@@ -352,26 +614,126 @@ function updateLocationLanguage(lang) {
     }
 }
 
-var arbitraryValuesSlider = document.getElementById('slider');
-var arbitraryValuesForSlider = ['4th century BCE', '3rd century BCE', '2nd century BCE', 'Roman Period'];
-var format = {
-    to: function(value) {
-        return arbitraryValuesForSlider[Math.round(value)];
+noUiSlider.create(eraSlider, {
+    start: [3],
+    step:1,
+    range: {
+        'min': [0],
+        'max': [3]
     },
-    from: function (value) {
-        return arbitraryValuesForSlider.indexOf(value);
+    tooltips:true,
+    format: {
+      to: function(value) {
+      // Math.round and -1, so 1.00 => 0, 2.00 => 2, etc.
+if (english) {
+      return ['4th century BCE', '3rd century BCE', '2nd century BCE', 'Roman Period'][Math.round(value)];
+}
+else {
+  return ['shekulli 4 p.e.s', 'shekulli 3 p.e.s','shekulli 2 p.e.s', 'Periudha romake'][Math.round(value)];
+}
+    },
+    from: Number
     }
-};
+});
 
-noUiSlider.create(arbitraryValuesSlider, {
-    // start values are parsed by 'format'
-    start: ['4th century BCE'],
-    range: { min: 0, max: arbitraryValuesForSlider.length - 1 },
-    step: 1,
-    tooltips: true,
-    format: format,
+
+
+function getALFilterNumber(filter) {
+  return  filter == "shekulli 4 p.e.s" ? 0 :
+      filter == "shekulli 3 p.e.s"  ? 1 :
+      filter == "shekulli 2 p.e.s" ? 2 :
+      filter == "Periudha romake"  ? 3 :
+                      4;
+}
+
+function getENFilterNumber(filter) {
+  return  filter == "4th century BCE" ? 0 :
+      filter == "3rd century BCE"  ? 1 :
+      filter == "2nd century BCE" ? 2 :
+      filter == "Roman Period"  ? 3 :
+                      4;
+}
+
+eraSlider.noUiSlider.on('change', function (values, handle) {
+    eraFilter = values[handle];
+
+    if (english) {
+    numFilter = getENFilterNumber(eraFilter);
+}
+else {
+  numFilter = getALFilterNumber(eraFilter);
+}
+
+    map.removeLayer(placesImported);
+    map.removeLayer(buildingsImported);
+    controls.remove();
+    console.log(english);
+
+    if (english) {
+    placesImported = new L.geoJson(places,{
+      onEachFeature:popUpPlaces,
+      filter:
+      function(feature, layer) {
+        return (feature.properties.timelineNumber <= numFilter);
+      },
+  }).addTo(map);
+}
+else {
+  placesImported = new L.geoJson(places,{
+    onEachFeature:popUpPlacesAL,
+    filter:
+    function(feature, layer) {
+      return (feature.properties.timelineNumber <= numFilter);
+    },
+  }).addTo(map);
+
+}
+
+  buildingsImported = new L.geoJSON(buildings, {
+      style: {
+          weight: 1,
+          color: "black",
+          opacity: .5,
+          fillOpacity: .3
+        },
+    filter:
+    function(feature, layer) {
+      return (feature.properties.numFilter <= numFilter);
+    },
+  }).addTo(map);
+
+  if (english) {
+  clusterLayers = {
+      "Walking Path": pathsImported,
+      "Ancient Walls": wallsImported,
+      "Ancient Buildings": buildingsImported,
+      "Ancient Streets": streetsImported
+  };
+  baseLayers = {
+      "Satellite Imagery": Esri_WorldImagery,
+      "Street Map" : openStreetMap
+  };
+  }
+  else {
+    clusterLayers = {
+        "Rrugë Këmbësore": pathsImported,
+        "Muret e Lashta": wallsImported,
+        "Godinat e Lashta": buildingsImported,
+        "Rrugët e Lashta": streetsImported
+    };
+    baseLayers = {
+        "Imazhe Satelitore": Esri_WorldImagery,
+        "Street Map" : openStreetMap
+    };
+
+  }
+
+  controls = L.control.layers(baseLayers, clusterLayers).addTo(map);
+
 
 });
+
+
 //disable panning while sliding
       slider.addEventListener('mouseover', function () {
               map.dragging.disable();
@@ -380,4 +742,18 @@ noUiSlider.create(arbitraryValuesSlider, {
           // Re-enable dragging when user's cursor leaves the element
       slider.addEventListener('mouseout', function () {
             map.dragging.enable();
+          });
+
+
+  map.on('zoomend', function() {
+      if (map.getZoom() >12){
+            map.removeLayer(allSites);
+            map.addLayer(placesImported);
+              }
+              else {
+                      map.addLayer(allSites);
+                      map.removeLayer(placesImported);
+                  }
+
+
           });

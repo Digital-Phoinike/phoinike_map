@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <link rel="stylesheet" href="./leaflet/leaflet.css" />
     <script src="./leaflet/leaflet.js"></script>
+    <link rel="stylesheet" href="./plugins/Leaflet.Pancontrol/src/L.Control.Pan.css" />
+  	<script src="./plugins/Leaflet.Pancontrol/src/L.Control.Pan.js"></script>
+    <script src="./plugins/Leaflet.fullscreen/dist/Leaflet.fullscreen.min.js"></script>
+    <link rel="stylesheet" href="./plugins/Leaflet.fullscreen/dist/leaflet.fullscreen.css" />
     <script src="./paths.js"></script>
     <script src="./buildings.js"></script>
     <script src="./places.js"></script>
@@ -13,6 +17,7 @@
     <script src="./walls.js"></script>
     <script src="./streets.js"></script>
     <script src="./entrance.js"></script>
+    <script src="./contextualSites.js"></script>
     <link rel="stylesheet" href="./plugins/noUiSlider/distribute/nouislider.min.css" />
   	<script src="./plugins/noUiSlider/distribute/nouislider.min.js"></script>
     <style>
@@ -35,7 +40,8 @@
             color: white;
             font-size: 18px;
         }
-
+        .leaflet-control-pan a {background-color: rgba(94, 8, 11, .8);}
+        .leaflet-control-pan {color:white;}
         #sliderunderlay {  border: 1px solid rgba(27, 31, 35, 0.15);
         border-radius: 6px;box-shadow: rgba(27, 31, 35, 0.04) 0 1px 0, rgba(255, 255, 255, 0.25) 0 1px 0 inset;box-sizing: border-box;
       position: absolute; width: 44%; height: 50px; bottom:40px; left: 20%; z-index: 800; background-color:white; opacity:.8}
