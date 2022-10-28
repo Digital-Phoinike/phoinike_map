@@ -18,8 +18,8 @@
     <script src="./streets.js"></script>
     <script src="./entrance.js"></script>
     <script src="./contextualSites.js"></script>
-    <link rel="stylesheet" href="./plugins/noUiSlider/distribute/nouislider.min.css" />
-  	<script src="./plugins/noUiSlider/distribute/nouislider.min.js"></script>
+    <link rel="stylesheet" href="./plugins/noUiSlider/distribute/nouislider.css" />
+  	<script src="./plugins/noUiSlider/distribute/nouislider.js"></script>
     <style>
         html, body {
             height: 100%;
@@ -42,10 +42,20 @@
         }
         .leaflet-control-pan a {background-color: rgba(94, 8, 11, .8);}
         .leaflet-control-pan {color:white;}
-        #sliderunderlay {  border: 1px solid rgba(27, 31, 35, 0.15);
-        border-radius: 6px;box-shadow: rgba(27, 31, 35, 0.04) 0 1px 0, rgba(255, 255, 255, 0.25) 0 1px 0 inset;box-sizing: border-box;
-      position: absolute; width: 44%; height: 50px; bottom:40px; left: 20%; z-index: 800; background-color:white; opacity:.8}
-        #slider {width:80%; left:10%; top: 25%;}
+        #sliderunderlay {
+            border: 2px solid white;
+            border-radius: 6px;
+            box-sizing: border-box;
+            position: absolute;
+            width: 50%;
+            height: 8%;
+            bottom: 4%;
+            left: 25%;
+            z-index: 800;
+            background-color: rgba(94, 8, 11, .8);
+            opacity: 1
+        }
+        #slider {width:90%; height: 40%; left:5%; top: 30%;}
     </style>
     <style type="text/css" media="screen">
         html {
