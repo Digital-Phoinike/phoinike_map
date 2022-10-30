@@ -146,14 +146,14 @@
  */
 .noUi-handle:before,
 .noUi-handle:after {
-  content: "";
-  display: block;
-  position: absolute;
-  height: 14px;
-  width: 1px;
-  background: black;
-  left: 14px;
-  top: 6px;
+    content: "";
+    display: block;
+    position: absolute;
+    height: 14px;
+    width: 1px;
+    background: rgba(94, 8, 11, .8);
+    left: 14px;
+    top: 6px;
 }
 .noUi-handle:after {
   left: 17px;

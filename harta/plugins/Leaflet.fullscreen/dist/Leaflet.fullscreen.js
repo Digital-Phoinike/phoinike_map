@@ -124,6 +124,7 @@
                 this._setFullscreen(false);
                 this.fire('fullscreenchange');
             }
+
         }
     });
 

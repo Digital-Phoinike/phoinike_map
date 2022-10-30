@@ -36,6 +36,24 @@ var placesImported = L.geoJson(places, {
   onEachFeature: popUpPlaces
 });
 
+var allSites = L.geoJSON(contextualSites, {
+    //onEachFeature: function (feature, layer) {
+    //    layer.bindTooltip(feature.properties.Location);
+    //},
+    onEachFeature: popUpPlaces,
+    pointToLayer: function (feature, latlng) {
+        var markerStyle = {
+            fillColor: getColor(feature.properties.Type),
+            color: "#FFF",
+            fillOpacity: 1,
+            opacity: 0.5,
+            weight: 1,
+            radius: 10
+        };
+        return L.circleMarker(latlng, markerStyle);
+    }
+});
+
 var entranceImported = L.geoJSON(entrance, {
     onEachFeature: popUpEntrance
 });
@@ -111,21 +129,7 @@ map.addLayer(pathsImported);
 entranceMarker = new L.Marker([39.91351259783837, 20.059624328713472], { icon: infoIcon }).bindPopup(entrancePopup, { maxHeight: 200, maxWidth: 200, closeOnClick: true }).addTo(map);
 
 
-var allSites =  L.geoJSON(contextualSites, {
-  onEachFeature: function (feature, layer) {
-    layer.bindTooltip(feature.properties.Location);
-  },
-  pointToLayer: function (feature, latlng) {
-    var markerStyle = {
-        fillColor: getColor(feature.properties.Type),
-        color: "#FFF",
-        fillOpacity: 1,
-        opacity: 0.5,
-        weight: 1,
-        radius: 10
-    };
-    return L.circleMarker(latlng, markerStyle);}
-  });
+
 
 function popUpSites(f,l) {
   var out = [];
@@ -140,7 +144,7 @@ function popUpSites(f,l) {
 
 function getColor(type) {
     return  type == "Site" ? '#000000' :
-        type == "Finiq"  ? '#880808' :
+        //type == "Finiq"  ? '#880808' :
         type == "Possible Site" ? '#BF40BF' :
                         '#252525';
 }
@@ -148,7 +152,9 @@ function getColor(type) {
 
 
 function changeLanguage(lang) {
+
     if (lang == "en") {
+        //seems like some code is getting repeated in this if statement, but not sure.....
       eraSlider.noUiSlider.destroy();
         map.removeLayer(placesImported);
         placesImported = new L.geoJson(places,{
@@ -228,19 +234,19 @@ function changeLanguage(lang) {
           }).addTo(map);
 
         }
-
-          buildingsImported = new L.geoJSON(buildings, {
-              style: {
-                  weight: 1,
-                  color: "black",
-                  opacity: .5,
-                  fillOpacity: .3
-                },
-            filter:
-            function(feature, layer) {
-              return (feature.properties.numFilter <= numFilter);
-            },
-          }).addTo(map);
+            //Commented this part out for now...is it necessary?
+          //buildingsImported = new L.geoJSON(buildings, {
+          //    style: {
+          //        weight: 1,
+          //        color: "black",
+          //        opacity: .5,
+          //        fillOpacity: .3
+          //      },
+          //  filter:
+          //  function(feature, layer) {
+          //    return (feature.properties.numFilter <= numFilter);
+          //  },
+          //}).addTo(map);
 
           if (english) {
           clusterLayers = {
@@ -267,9 +273,9 @@ function changeLanguage(lang) {
 
           }
 
-          controls = L.control.layers(baseLayers, clusterLayers).addTo(map);
+            controls = L.control.layers(baseLayers, clusterLayers).addTo(map);
 
-
+           
         });
     }
     if (lang == "al") {
@@ -398,7 +404,8 @@ function changeLanguage(lang) {
     }
 }
 
-function popUpPlaces(f,l) {
+function popUpPlaces(f, l) {
+    l.bindTooltip(f.properties.Name);
     var out = [];
     var myImage;
     var myImageW = imageWidth;
@@ -415,6 +422,7 @@ function popUpPlaces(f,l) {
 }
 
 function popUpPlacesAL(f, l) {
+    l.bindTooltip(f.properties.ALName);
     var out = [];
     var myImage;
     var myImageW = imageWidth;
@@ -465,11 +473,13 @@ map.on('movestart', function (e) {
 
 map.on('resize', function(e){
     map.closePopup();
+
     resized = true;
     if (positionShown == true) {
         current_position.closeTooltip();
     }
 });
+
 
 map.on('popupopen', function (event) {
     if (positionShown == true) {
@@ -606,6 +616,7 @@ map.locate({ setView: false, watch: true });
 map.on('locationfound', onLocationFound);
 map.on('locationerror', onLocationError);
 };
+
 
 function updateLocationLanguage(lang) {
     if (positionShown == true) {
@@ -750,14 +761,12 @@ else {
 
 
   map.on('zoomend', function() {
-      if (map.getZoom() >12){
+      if (map.getZoom() >14){
             map.removeLayer(allSites);
             map.addLayer(placesImported);
               }
-              else {
-                      map.addLayer(allSites);
-                      map.removeLayer(placesImported);
-                  }
-
-
-          });
+        else {
+                map.addLayer(allSites);
+                map.removeLayer(placesImported);
+            }
+    });

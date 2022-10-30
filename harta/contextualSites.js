@@ -10,7 +10,8 @@ var contextualSites = {
 			},
 			"properties" : {
 				"OBJECTID" : 1,
-				"Location" : "Malathrea",
+				"Name": "Malathrea",
+				"ALName": "Albanian Name",
 				"Type" : "Site"
 			}
 		},
@@ -22,7 +23,8 @@ var contextualSites = {
 			},
 			"properties" : {
 				"OBJECTID" : 2,
-				"Location" : "Çuka e Ajtoit",
+				"Name": "Çuka e Ajtoit",
+				"ALName": "Albanian Name",
 				"Type" : "Site"
 			}
 		},
@@ -34,7 +36,8 @@ var contextualSites = {
 			},
 			"properties" : {
 				"OBJECTID" : 3,
-				"Location" : "Çuka e Sarandës - Vila",
+				"Name": "Çuka e Sarandës - Vila",
+				"ALName": "Albanian Name",
 				"Type" : "Site"
 			}
 		},
@@ -46,7 +49,8 @@ var contextualSites = {
 			},
 			"properties" : {
 				"OBJECTID" : 4,
-				"Location" : "Mesopotam - Monastery",
+				"Name": "Mesopotam - Monastery",
+				"ALName": "Albanian Name",
 				"Type" : "Site"
 			}
 		},
@@ -58,7 +62,8 @@ var contextualSites = {
 			},
 			"properties" : {
 				"OBJECTID" : 5,
-				"Location" : "Metoq villa",
+				"Name": "Metoq villa",
+				"ALName": "Albanian Name",
 				"Type" : "Site"
 			}
 		},
@@ -70,7 +75,8 @@ var contextualSites = {
 			},
 			"properties" : {
 				"OBJECTID" : 6,
-				"Location" : "Roman wall fragment - Saranda (Onchesmos)",
+				"Name": "Roman wall fragment - Saranda (Onchesmos)",
+				"ALName": "Albanian Name",
 				"Type" : "Site"
 			}
 		},
@@ -82,7 +88,8 @@ var contextualSites = {
 			},
 			"properties" : {
 				"OBJECTID" : 7,
-				"Location" : "Museum Of Archaeology",
+				"Name": "Museum Of Archaeology",
+				"ALName": "Albanian Name",
 				"Type" : "Site"
 			}
 		},
@@ -94,22 +101,24 @@ var contextualSites = {
 			},
 			"properties" : {
 				"OBJECTID" : 8,
-				"Location" : "Synagogue - Basilica, Archeological Remains",
+				"Name": "Synagogue - Basilica, Archeological Remains",
+				"ALName": "Albanian Name",
 				"Type" : "Site"
 			}
 		},
-		{
-			"type" : "Feature",
-			"geometry" : {
-				"type" : "Point",
-				"coordinates" : [ 20.0565156, 39.9135125, 0 ]
-			},
-			"properties" : {
-				"OBJECTID" : 9,
-				"Location" : "Finiq Archaeological Park",
-				"Type" : "Finiq"
-			}
-		},
+		//Removed Finiq for now, since we already have the big info icon.
+		//{
+		//	"type" : "Feature",
+		//	"geometry" : {
+		//		"type" : "Point",
+		//		"coordinates" : [ 20.0565156, 39.9135125, 0 ]
+		//	},
+		//	"properties" : {
+		//		"OBJECTID" : 9,
+		//		"Name" : "Finiq Archaeological Park",
+		//		"Type" : "Finiq"
+		//	}
+		//},
 		{
 			"type" : "Feature",
 			"geometry" : {
@@ -118,7 +127,8 @@ var contextualSites = {
 			},
 			"properties" : {
 				"OBJECTID" : 10,
-				"Location" : "Diaporit - Roman Villa",
+				"Name": "Diaporit - Roman Villa",
+				"ALName": "Albanian Name",
 				"Type" : "Possible Site"
 			}
 		},
@@ -130,7 +140,8 @@ var contextualSites = {
 			},
 			"properties" : {
 				"OBJECTID" : 11,
-				"Location" : "Matomara",
+				"Name": "Matomara",
+				"ALName": "Albanian Name",
 				"Type" : "Possible Site"
 			}
 		},
@@ -142,7 +153,8 @@ var contextualSites = {
 			},
 			"properties" : {
 				"OBJECTID" : 12,
-				"Location" : "The Castle of Borsh",
+				"Name": "The Castle of Borsh",
+				"ALName": "Albanian Name",
 				"Type" : "Possible Site"
 			}
 		}
