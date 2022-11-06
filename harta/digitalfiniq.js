@@ -157,6 +157,7 @@ function changeLanguage(lang) {
 
     if (lang == "en") {
         //seems like some code is getting repeated in this if statement, but not sure.....
+        langNumber=0;
       eraSlider.noUiSlider.destroy();
         map.removeLayer(placesImported);
         placesImported = new L.geoJson(places,{
