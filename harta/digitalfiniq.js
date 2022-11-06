@@ -54,7 +54,7 @@ var allSites = L.geoJSON(contextualSites, {
         };
         return L.circleMarker(latlng, markerStyle);
     }
-});
+}).addTo(map);
 
 var entranceImported = L.geoJSON(entrance, {
     onEachFeature: popUpEntrance
@@ -73,7 +73,7 @@ var buildingsImported = L.geoJSON(buildings, {
         opacity: .5,
         fillOpacity: .3
         }
-    });
+    }).addTo(map);
 var wallsImported = L.geoJSON(walls, {
     style: {
         weight: 3,
@@ -193,6 +193,11 @@ function changeLanguage(lang) {
                 'max': [3]
             },
             tooltips:true,
+            pips: {
+       mode: 'count',
+       values: 6,
+       density: 4
+   },
             format: {
               to: function(value) {
               // Math.round and -1, so 1.00 => 0, 2.00 => 2, etc.
@@ -203,6 +208,7 @@ function changeLanguage(lang) {
             }
         });
         eraSlider.noUiSlider.on('change', function (values, handle) {
+if (map.getZoom() >14){
             eraFilter = values[handle];
 
             if (english) {
@@ -278,7 +284,7 @@ function changeLanguage(lang) {
             controls = L.control.layers(baseLayers, clusterLayers).addTo(map);
 
 
-        });
+        }});
     }
     if (lang == "al") {
       eraSlider.noUiSlider.destroy();
@@ -325,6 +331,7 @@ function changeLanguage(lang) {
             }
         });
         eraSlider.noUiSlider.on('change', function (values, handle) {
+          if (map.getZoom() >14){
             eraFilter = values[handle];
 
             if (english) {
@@ -401,7 +408,7 @@ function changeLanguage(lang) {
           controls = L.control.layers(baseLayers, clusterLayers).addTo(map);
 
 
-        });
+      }  });
 
     }
 }
@@ -672,6 +679,7 @@ function getENFilterNumber(filter) {
 }
 
 eraSlider.noUiSlider.on('change', function (values, handle) {
+  if (map.getZoom() >14){
     eraFilter = values[handle];
 
     if (english) {
@@ -748,7 +756,7 @@ else {
   controls = L.control.layers(baseLayers, clusterLayers).addTo(map);
 
 
-});
+}});
 
 
 //disable panning while sliding
@@ -764,11 +772,11 @@ else {
 
   map.on('zoomend', function() {
       if (map.getZoom() >14){
-            map.removeLayer(allSites);
+
             map.addLayer(placesImported);
               }
         else {
-                map.addLayer(allSites);
+
                 map.removeLayer(placesImported);
             }
     });
