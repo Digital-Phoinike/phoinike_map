@@ -21,22 +21,25 @@ var imageWidth = popUpWidth * 0.8;
 var imageHeight = imageWidth * 0.6;
 var images = [null, "image1.png", "image2.png", "image3.png", "image4.png", "image5.png", "image6.png", "image7.png", "image8.png", "image9.png"];
 var currentImage = null;
+
+
 var eraSlider = document.getElementById('slider');
 var Esri_WorldImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-            maxNativeZoom: 17,
-            maxZoom: 20,
-            attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'});
+            maxNativeZoom: 17}).addTo(map);
 
 var openStreetMap = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                    attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-                    maxNativeZoom:17,
-                    maxZoom:20
+                    maxNativeZoom:17
                     });
+
+//initial language set to English and Roman Period for filtering
 var langNumber=0;
 var numFilter=3;
-var placesImported = L.geoJson(places, {
+
+//load initial geoJson files
+var placesImported;
+/* = L.geoJson(places, {
   onEachFeature: popUpPlaces
-});
+});*/
 
 var allSites = L.geoJSON(contextualSites, {
     //onEachFeature: function (feature, layer) {
@@ -65,7 +68,8 @@ var pathsImported = L.geoJSON(paths, {
         weight: 4,
         opacity: .3
         }
-    });
+    }).addTo(map);
+
 var buildingsImported = L.geoJSON(buildings, {
     style: {
         weight: 1,
@@ -74,13 +78,15 @@ var buildingsImported = L.geoJSON(buildings, {
         fillOpacity: .3
         }
     }).addTo(map);
+
 var wallsImported = L.geoJSON(walls, {
     style: {
         weight: 3,
         color: "black",
         opacity: 0.8,
         }
-    });
+    }).addTo(map);
+
 var streetsImported = L.geoJSON(streets, {
     style: {
         weight: 2,
@@ -89,97 +95,122 @@ var streetsImported = L.geoJSON(streets, {
         dashArray: '12'
         }
     });
+
 var infoIcon = L.icon({
     iconUrl: 'info.png',
     iconSize: [150, 75], // size of the icon
     iconAnchor: [75, 100], // point of the icon which will correspond to marker's location
     popupAnchor: [0, -25] // point from which the popup should open relative to the iconAnchor
     });
+
 var infoIconAl = L.icon({
     iconUrl: 'infoAL.png',
     iconSize: [150, 75], // size of the icon
     iconAnchor: [75, 100], // point of the icon which will correspond to marker's location
     popupAnchor: [0, -25] // point from which the popup should open relative to the iconAnchor
     });
+
 var entrancePopup = "<center><b>Ancient Phoenike</b></center><br>The settlement of ancient Phoenike was one of the largest communities in the region of Epirus during the Hellenistic period and was the capital of Chaonia, one of the fourteen Epirote tribal regions. While evidence from the 5th and 4th centuries BCE point to the settlement’s earliest origins, its true urban development dates primarily to its Hellenistic phase in the 3rd century BCE, culminating in the city emerging as the capital of the Epirote League. During the Third Macedonian War, the region of Chaonia supported the Roman Republic, resulting in Phoenike being spared from Roman destruction when the war ended in 168 BCE. As a Roman community, Phoenike lasted for several centuries and experienced an important phase under the Byzantine Emperor Justinian during the 6th century CE. During this period, Phoenike became a vescoval see and featured a variety of early Christian religious buildings.<br><br>First excavated by Luigi Maria Ugolini in the 1920s, later by Albanian archaeologists, and more recently by an Albanian-Italian collaboration between the Institute of Archaeology and University of Bologna, the history of Phoenike continues to be written as archaeologists peel back its layers year-by-year. This interactive map tells the story of the most important archaeological discoveries over the past century, including grand public buildings, monumental defensive structures, fascinating private residences, and a multilayered burial ground which served as the final resting place for centuries of generations of the settlement’s inhabitants. Within the map, occasional links to 3D content help bring this story to life and illustrate the reconstructions imagined by archaeologists who have excavated and studied this site. <br><br>Enjoy your exploration of ancient Phoenike!<br><br><i>Designed and created by <b>Sabian Hasani and Tyler Duane Johnson</b> with the support of the <b>Albanian Ministry of Culture</b> and the <b>Albanian-Italian Archaeological Mission at Phoenike</b></i><br><br>";
+
 var entrancePopupAL = "<center><b>Foinike E Lashtë</b></center><br>Vendbanimi i Foinikes së lashtë ishte një nga qendrat më të mëdha në rajonin e Epirit gjatë periudhës helenistike, njëherazi edhe kryeqendër e Kaonisë, një nga katërmbëdhjetë rajonet fisnore epirote. Ndërkohë që të dhënat që vijnë nga shek. 5 dhe 4 p.e.s dëshmojnë për origjinën më të hershme të vendbanimit, zhvillimi i vërtetë urban i tij daton kryesisht në periudhën helenistike, në shek. 3 p.e.s, periudhë gjatë të cilës qyteti arrin kulmin si kryeqendër e Ligës Epirote. Gjatë Luftës së Tretë Maqedonase, rajoni i Kaonisë përkrahu Republikën Romake, fakt ky që e shpëtoi Foiniken nga raprezaljet romake në përfundim të luftës në vitin 168 p.e.s. Si një komunitet romak, Foinike vijoi jetën për disa shekuj duke përjetuar një fazë të rëndësishme nën perandorin bizantin Justinian, gjatë shekullit të 6 -të e.s. Gjatë kësaj periudhe, Foinike u bë një qendër episkopale, e pajisur me një sërë ndërtesash religjioze, që datohen në periudhën e kristianizmit të hershëm.<br><br>Gërmimet e para kanë nisur në vitet 1920 nga Luigi Maria Ugolini, më pas nga arkeologë shqiptarë dhe së fundmi nga projekti i përbashkët shqiptaro-italian, bashkëpunim midis Institutit të Arkeologjisë (ASA) dhe Universiteti i Bolonjës. Historia e Foinikes antike vijon të shkruhet ndërsa arkeologët nxjerrin në dritë shtresëzimet e ndryshme vit pas viti. Kjo hartë interaktive tregon historinë e zbulimeve më të rëndësishme arkeologjike të shekullit të kaluar, përfshirë ndërtesat e mëdha publike, strukturat monumentale mbrojtëse, rezidencat magjepsëse të banimit dhe një varrezë me disa faza, e cila për shekuj ka shërbyer si vëndbanimi i fundit për banorët e Foinikes antike. Në brëndësinë e saj harta përmban disa materiale 3D, të cilat ndihmojnë në paraqitjen e kësaj historie dhe ilustrojnë rindërtimet e ideuara nga arkeologët që kanë e gërmuar dhe studiuar këtë qendër të rëndësishme arkeologjike.<br><br><i>Projektuar dhe krijuar nga <b>Sabian Hasani dhe Tyler Duane Johnson</b> me mbështetjen e <b>Ministrisë Shqiptare të Kulturës</b> dhe <b>Misionit Arkeologjik Shqiptaro-Italian në Foinike</b></i><br><br>";
+
 var english = true;
+
 var entranceMarkerAL;
+
 var baseLayers = {
     "Satellite Imagery": Esri_WorldImagery,
     "Street Map": openStreetMap
 };
+
 var clusterLayers = {
     "Walking Path": pathsImported,
     "Ancient Walls": wallsImported,
-    "Ancient Buildings": buildingsImported,
+    //"Ancient Buildings": buildingsImported,
     "Ancient Streets": streetsImported
 };
+
+var controls = L.control.layers(baseLayers, clusterLayers).addTo(map);
+
 var current_position
 var positionShown = false;
 var needToNotifyDistance = true;
 var needToNotifySettings = true;
-var controls = L.control.layers(baseLayers, clusterLayers).addTo(map);
 
-
-
-Esri_WorldImagery.addTo(map);
-map.addLayer(placesImported);
-map.addLayer(wallsImported);
-map.addLayer(pathsImported);
 
 entranceMarker = new L.Marker([39.91351259783837, 20.059624328713472], { icon: infoIcon }).bindPopup(entrancePopup, { maxHeight: 200, maxWidth: 200, closeOnClick: true }).addTo(map);
 
+//fuction creates initial slider; functions located at end of code
+sliderCreation(langNumber, numFilter);
+
+eraSlider.noUiSlider.on('change', function (values, handle) {
+
+    //remove old layers
+    map.removeLayer(placesImported);
+    map.removeLayer(buildingsImported);
+    //get filter value from handle
+    eraFilter = values[handle];
+    //convert filters to numbers by language then rebuild places + popups; functions at bottom of code
+    if (langNumber==0) {
+    numFilter = getENFilterNumber(eraFilter);
 
 
+    placesImported = new L.geoJson(places,{
+      onEachFeature:popUpPlaces,
+      filter:
+      function(feature, layer) {
+        return (feature.properties.timelineNumber <= numFilter);
+      },
+    }).addTo(map);
 
-function popUpSites(f,l) {
-  var out = [];
-  //adds spaces in between entries
-  if (f.properties) {
-    out.push('<b>Name: </b>' + f.properties.Location);
-    out.push('<b>Site Type: </b>' + f.properties.Type);
-    out.push('<a href=#>Link to Page?</a>');
-    l.bindPopup(out.join("<br />"));
-  }
-};
+    }
+    else {
+      numFilter = getALFilterNumber(eraFilter);
+      placesImported = new L.geoJson(places,{
+        onEachFeature:popUpPlacesAL,
+        filter:
+        function(feature, layer) {
+          return (feature.properties.timelineNumber <= numFilter);
+        },
+      }).addTo(map);
+    }
+  //filter buildings based on timelineNumber
+  buildingsImported = new L.geoJSON(buildings, {
+      style: {
+          weight: 1,
+          color: "black",
+          opacity: .5,
+          fillOpacity: .3
+        },
+    filter:
+    function(feature, layer) {
+      return (feature.properties.timelineNumber <= numFilter);
+    },
+  }).addTo(map);
+});
 
-function getColor(type) {
-    return  type == "Site" ? '#000000' :
-        //type == "Finiq"  ? '#880808' :
-        type == "Possible Site" ? '#BF40BF' :
-                        '#252525';
-}
-
+//Could be used to create pop up box for contextual sites
 
 
 function changeLanguage(lang) {
 
     if (lang == "en") {
-        //seems like some code is getting repeated in this if statement, but not sure.....
-        langNumber=0;
+
+      langNumber=0;
       eraSlider.noUiSlider.destroy();
-        map.removeLayer(placesImported);
-        placesImported = new L.geoJson(places,{
-          onEachFeature:popUpPlaces,
-          filter:
-          function(feature, layer) {
-            return (feature.properties.timelineNumber <= numFilter);
-          },
-        });
+      map.removeLayer(placesImported);
 
-        if (map.getZoom() >14){
-          placesImported.addTo(map);
-        };
+      //creates slider and runs filter
+      sliderCreation(langNumber, numFilter);
 
-        map.removeLayer(entranceMarkerAL);
-        entranceMarker = new L.Marker([39.91351259783837, 20.059624328713472], { icon: infoIcon }).bindPopup(entrancePopup, { maxHeight: 200, maxWidth: 200, closeOnClick: true }).addTo(map);
-        english = true;
-        controls.remove();
-        clusterLayers = {
+      map.removeLayer(entranceMarkerAL);
+      entranceMarker = new L.Marker([39.91351259783837, 20.059624328713472], { icon: infoIcon }).bindPopup(entrancePopup, { maxHeight: 200, maxWidth: 200, closeOnClick: true }).addTo(map);
+      english = true;
+      controls.remove();
+      clusterLayers = {
             "Walking Path": pathsImported,
             "Ancient Walls": wallsImported,
-            "Ancient Buildings": buildingsImported,
+            //"Ancient Buildings": buildingsImported,
             "Ancient Streets": streetsImported
         };
         baseLayers = {
@@ -188,29 +219,7 @@ function changeLanguage(lang) {
         };
         controls = L.control.layers(baseLayers, clusterLayers).addTo(map);
 
-        sliderCreation(langNumber, numFilter);
-    /*    noUiSlider.create(eraSlider, {
-            start: [numFilter],
-            step:1,
-            range: {
-                'min': [0],
-                'max': [3]
-            },
-            tooltips:true,
-            pips: {
-        mode: 'count',
-        values: 4,
-        density: 25
-    },
-            format: {
-              to: function(value) {
-              // Math.round and -1, so 1.00 => 0, 2.00 => 2, etc.
 
-              return ['4th century BCE', '3rd century BCE', '2nd century BCE', 'Roman Period'][Math.round(value)];
-        },
-            from: Number
-            }
-        });*/
         eraSlider.noUiSlider.on('change', function (values, handle) {
 
             eraFilter = values[handle];
@@ -224,10 +233,12 @@ function changeLanguage(lang) {
 
             map.removeLayer(placesImported);
             map.removeLayer(buildingsImported);
-            controls.remove();
+
             console.log(english);
 
             if (english) {
+
+
             placesImported = new L.geoJson(places,{
               onEachFeature:popUpPlaces,
               filter:
@@ -246,7 +257,7 @@ function changeLanguage(lang) {
           }).addTo(map);
 
         }
-            //Commented this part out for now...is it necessary?
+
           buildingsImported = new L.geoJSON(buildings, {
             style: {
                  weight: 1,
@@ -256,55 +267,19 @@ function changeLanguage(lang) {
                 },
             filter:
             function(feature, layer) {
-              return (feature.properties.numFilter <= numFilter);
+              return (feature.properties.timelineNumber <= numFilter);
             },
           }).addTo(map);
-
-          if (english) {
-          clusterLayers = {
-              "Walking Path": pathsImported,
-              "Ancient Walls": wallsImported,
-              "Ancient Buildings": buildingsImported,
-              "Ancient Streets": streetsImported
-          };
-          baseLayers = {
-              "Satellite Imagery": Esri_WorldImagery
-          };
-          }
-          else {
-            clusterLayers = {
-                "Rrugë Këmbësore": pathsImported,
-                "Muret e Lashta": wallsImported,
-                "Godinat e Lashta": buildingsImported,
-                "Rrugët e Lashta": streetsImported
-            };
-            baseLayers = {
-                "Imazhe Satelitore": Esri_WorldImagery,
-                "Street Map": openStreetMap
-            };
-
-          }
-
-            controls = L.control.layers(baseLayers, clusterLayers).addTo(map);
-
-
         });
     }
+
     if (lang == "al") {
       langNumber=1;
       eraSlider.noUiSlider.destroy();
       map.removeLayer(placesImported);
-      placesImported = new L.geoJson(places,{
-        onEachFeature:popUpPlacesAL,
-        filter:
-        function(feature, layer) {
-          return (feature.properties.timelineNumber <= numFilter);
-        },
-      });
 
-      if (map.getZoom() >14){
-        placesImported.addTo(map);
-      };
+      sliderCreation(langNumber, numFilter);
+
 
       map.removeLayer(entranceMarker);
         entranceMarkerAL = new L.Marker([39.91351259783837, 20.059624328713472], { icon: infoIconAl }).bindPopup(entrancePopupAL, { maxHeight: 200, maxWidth: 200, closeOnClick: true }).addTo(map);
@@ -317,33 +292,12 @@ function changeLanguage(lang) {
             "Rrugët e Lashta": streetsImported
         };
         baseLayers = {
-            "Imazhe Satelitore": Esri_WorldImagery
+            "Imazhe Satelitore": Esri_WorldImagery,
+            "Street Map": openStreetMap
         };
         controls = L.control.layers(baseLayers, clusterLayers).addTo(map);
-        sliderCreation(langNumber, numFilter);
-      /*  noUiSlider.create(eraSlider, {
-            start: [numFilter],
-            step:1,
-            range: {
-                'min': [0],
-                'max': [3]
-            },
-            tooltips:true,
-            pips: {
-        mode: 'count',
-        values: 4,
-        density: 25
-    },
-            format: {
-              to: function(value) {
-              // Math.round and -1, so 1.00 => 0, 2.00 => 2, etc.
 
-          return ['shekulli 4 p.e.s', 'shekulli 3 p.e.s','shekulli 2 p.e.s', 'Periudha romake'][Math.round(value)];
-        }
-            ,
-            from: Number
-            }
-        }); */
+
         eraSlider.noUiSlider.on('change', function (values, handle) {
 
             eraFilter = values[handle];
@@ -357,8 +311,7 @@ function changeLanguage(lang) {
 
             map.removeLayer(placesImported);
             map.removeLayer(buildingsImported);
-            controls.remove();
-            console.log(english);
+
 
             if (english) {
             placesImported = new L.geoJson(places,{
@@ -389,38 +342,9 @@ function changeLanguage(lang) {
                 },
             filter:
             function(feature, layer) {
-              return (feature.properties.numFilter <= numFilter);
+              return (feature.properties.timelineNumber <= numFilter);
             },
           }).addTo(map);
-
-          if (english) {
-          clusterLayers = {
-              "Walking Path": pathsImported,
-              "Ancient Walls": wallsImported,
-              "Ancient Buildings": buildingsImported,
-              "Ancient Streets": streetsImported
-          };
-          baseLayers = {
-              "Satellite Imagery": Esri_WorldImagery,
-              "Street Map": openStreetMap
-          };
-          }
-          else {
-            clusterLayers = {
-                "Rrugë Këmbësore": pathsImported,
-                "Muret e Lashta": wallsImported,
-                "Godinat e Lashta": buildingsImported,
-                "Rrugët e Lashta": streetsImported
-            };
-            baseLayers = {
-                "Imazhe Satelitore": Esri_WorldImagery,
-                "Street Map": openStreetMap
-            };
-
-          }
-
-          controls = L.control.layers(baseLayers, clusterLayers).addTo(map);
-
 
         });
 
@@ -651,9 +575,8 @@ function updateLocationLanguage(lang) {
         }
     }
 }
-var langNumber=0;
-var numFilter = 3;
-sliderCreation(langNumber, numFilter);
+
+
 function sliderCreation (langNumber, numFilter) {
   noUiSlider.create(eraSlider, {
     start: [numFilter],
@@ -664,26 +587,36 @@ function sliderCreation (langNumber, numFilter) {
     },
     tooltips:true,
     pips: {
-mode: 'count',
-values: 4,
-density: 25
-},
+        mode: 'count',
+        values: 4,
+        density: 25
+      },
     format: {
       to: function(value) {
       // Math.round and -1, so 1.00 => 0, 2.00 => 2, etc.
-if (langNumber==0) {
-      return ['4th century BCE', '3rd century BCE', '2nd century BCE', 'Roman Period'][Math.round(value)];
-}
-else {
-  return ['shekulli 4 p.e.s', 'shekulli 3 p.e.s','shekulli 2 p.e.s', 'Periudha romake'][Math.round(value)];
-}
+      if (langNumber==0) {
+        return ['4th century BCE', '3rd century BCE', '2nd century BCE', 'Roman Period'][Math.round(value)];
+      }
+      else {
+        return ['shekulli 4 p.e.s', 'shekulli 3 p.e.s','shekulli 2 p.e.s', 'Periudha romake'][Math.round(value)];
+      }
     },
-    from: Number
+      from: Number
     }
-})};
+})
+placesImported = new L.geoJson(places,{
+  onEachFeature:popUpPlacesAL,
+  filter:
+  function(feature, layer) {
+    return (feature.properties.timelineNumber <= numFilter);
+  },
+});
+if (map.getZoom() >14){
+  placesImported.addTo(map);
+};
+}
 
-
-
+//functions for converting timeline text to numbers
 function getALFilterNumber(filter) {
   return  filter == "shekulli 4 p.e.s" ? 0 :
       filter == "shekulli 3 p.e.s"  ? 1 :
@@ -700,98 +633,17 @@ function getENFilterNumber(filter) {
                       4;
 }
 
-eraSlider.noUiSlider.on('change', function (values, handle) {
-  if (map.getZoom() >14){
-    eraFilter = values[handle];
-
-    if (english) {
-    numFilter = getENFilterNumber(eraFilter);
-}
-else {
-  numFilter = getALFilterNumber(eraFilter);
-}
-
-    map.removeLayer(placesImported);
-    map.removeLayer(buildingsImported);
-    controls.remove();
-    console.log(english);
-
-    if (english) {
-    placesImported = new L.geoJson(places,{
-      onEachFeature:popUpPlaces,
-      filter:
-      function(feature, layer) {
-        return (feature.properties.timelineNumber <= numFilter);
-      },
-  }).addTo(map);
-}
-else {
-  placesImported = new L.geoJson(places,{
-    onEachFeature:popUpPlacesAL,
-    filter:
-    function(feature, layer) {
-      return (feature.properties.timelineNumber <= numFilter);
-    },
-  }).addTo(map);
-
-}
-
-  buildingsImported = new L.geoJSON(buildings, {
-      style: {
-          weight: 1,
-          color: "black",
-          opacity: .5,
-          fillOpacity: .3
-        },
-    filter:
-    function(feature, layer) {
-      return (feature.properties.timelineNumber <= numFilter);
-    },
-  }).addTo(map);
-
-  if (english) {
-  clusterLayers = {
-      "Walking Path": pathsImported,
-      "Ancient Walls": wallsImported,
-      "Ancient Buildings": buildingsImported,
-      "Ancient Streets": streetsImported
-  };
-  baseLayers = {
-      "Satellite Imagery": Esri_WorldImagery,
-      "Street Map" : openStreetMap
-  };
-  }
-  else {
-    clusterLayers = {
-        "Rrugë Këmbësore": pathsImported,
-        "Muret e Lashta": wallsImported,
-        "Godinat e Lashta": buildingsImported,
-        "Rrugët e Lashta": streetsImported
-    };
-    baseLayers = {
-        "Imazhe Satelitore": Esri_WorldImagery,
-        "Street Map" : openStreetMap
-    };
-
-  }
-
-  controls = L.control.layers(baseLayers, clusterLayers).addTo(map);
-
-
-}});
-
-
 //disable panning while sliding
-      slider.addEventListener('mouseover', function () {
-              map.dragging.disable();
-          });
+  slider.addEventListener('mouseover', function () {
+    map.dragging.disable();
+  });
 
-          // Re-enable dragging when user's cursor leaves the element
-      slider.addEventListener('mouseout', function () {
-            map.dragging.enable();
-          });
+// Re-enable dragging when user's cursor leaves the element
+  slider.addEventListener('mouseout', function () {
+    map.dragging.enable();
+  });
 
-
+//Disable Slider when zoomed out and remove Phoenike individual locations
   map.on('zoomend', function() {
       if (map.getZoom() >14){
         // To re-enable
@@ -800,8 +652,26 @@ else {
               }
         else {
           eraSlider.setAttribute('disabled', true);
+          map.removeLayer(placesImported);
+        }
+  });
 
+  /*function popUpSites(f,l) {
+    var out = [];
+    //adds spaces in between entries
+    if (f.properties) {
+      out.push('<b>Name: </b>' + f.properties.Location);
+      out.push('<b>Site Type: </b>' + f.properties.Type);
+      out.push('<a href=#>Link to Page?</a>');
+      l.bindPopup(out.join("<br />"));
+    }
+  };
+  */
 
-                map.removeLayer(placesImported);
-            }
-    });
+  //Determines color of contextual site points
+  function getColor(type) {
+      return  type == "Site" ? '#000000' :
+          //type == "Finiq"  ? '#880808' :
+          type == "Possible Site" ? '#BF40BF' :
+                          '#252525';
+  }
