@@ -165,8 +165,11 @@ function changeLanguage(lang) {
           function(feature, layer) {
             return (feature.properties.timelineNumber <= numFilter);
           },
-        }).addTo(map);
+        });
 
+        if (map.getZoom() >14){
+          placesImported.addTo(map);
+        };
 
         map.removeLayer(entranceMarkerAL);
         entranceMarker = new L.Marker([39.91351259783837, 20.059624328713472], { icon: infoIcon }).bindPopup(entrancePopup, { maxHeight: 200, maxWidth: 200, closeOnClick: true }).addTo(map);
@@ -184,8 +187,8 @@ function changeLanguage(lang) {
         };
         controls = L.control.layers(baseLayers, clusterLayers).addTo(map);
 
-
-        noUiSlider.create(eraSlider, {
+        sliderCreation(langNumber, numFilter);
+    /*    noUiSlider.create(eraSlider, {
             start: [numFilter],
             step:1,
             range: {
@@ -206,9 +209,9 @@ function changeLanguage(lang) {
         },
             from: Number
             }
-        });
+        });*/
         eraSlider.noUiSlider.on('change', function (values, handle) {
-if (map.getZoom() >14){
+
             eraFilter = values[handle];
 
             if (english) {
@@ -284,9 +287,10 @@ if (map.getZoom() >14){
             controls = L.control.layers(baseLayers, clusterLayers).addTo(map);
 
 
-        }});
+        });
     }
     if (lang == "al") {
+      langNumber=1;
       eraSlider.noUiSlider.destroy();
       map.removeLayer(placesImported);
       placesImported = new L.geoJson(places,{
@@ -295,7 +299,11 @@ if (map.getZoom() >14){
         function(feature, layer) {
           return (feature.properties.timelineNumber <= numFilter);
         },
-      }).addTo(map);
+      });
+
+      if (map.getZoom() >14){
+        placesImported.addTo(map);
+      };
 
       map.removeLayer(entranceMarker);
         entranceMarkerAL = new L.Marker([39.91351259783837, 20.059624328713472], { icon: infoIconAl }).bindPopup(entrancePopupAL, { maxHeight: 200, maxWidth: 200, closeOnClick: true }).addTo(map);
@@ -311,8 +319,8 @@ if (map.getZoom() >14){
             "Imazhe Satelitore": Esri_WorldImagery
         };
         controls = L.control.layers(baseLayers, clusterLayers).addTo(map);
-
-        noUiSlider.create(eraSlider, {
+        sliderCreation(langNumber, numFilter);
+      /*  noUiSlider.create(eraSlider, {
             start: [numFilter],
             step:1,
             range: {
@@ -334,9 +342,9 @@ if (map.getZoom() >14){
             ,
             from: Number
             }
-        });
+        }); */
         eraSlider.noUiSlider.on('change', function (values, handle) {
-          if (map.getZoom() >14){
+
             eraFilter = values[handle];
 
             if (english) {
@@ -413,7 +421,7 @@ if (map.getZoom() >14){
           controls = L.control.layers(baseLayers, clusterLayers).addTo(map);
 
 
-      }  });
+        });
 
     }
 }
@@ -642,9 +650,12 @@ function updateLocationLanguage(lang) {
         }
     }
 }
-
-noUiSlider.create(eraSlider, {
-    start: [3],
+var langNumber=0;
+var numFilter = 3;
+sliderCreation(langNumber, numFilter);
+function sliderCreation (langNumber, numFilter) {
+  noUiSlider.create(eraSlider, {
+    start: [numFilter],
     step:1,
     range: {
         'min': [0],
@@ -659,7 +670,7 @@ density: 25
     format: {
       to: function(value) {
       // Math.round and -1, so 1.00 => 0, 2.00 => 2, etc.
-if (english) {
+if (langNumber==0) {
       return ['4th century BCE', '3rd century BCE', '2nd century BCE', 'Roman Period'][Math.round(value)];
 }
 else {
@@ -668,7 +679,7 @@ else {
     },
     from: Number
     }
-});
+})};
 
 
 
