@@ -143,50 +143,9 @@ entranceMarker = new L.Marker([39.91351259783837, 20.059624328713472], { icon: i
 //fuction creates initial slider; functions located at end of code
 sliderCreation(langNumber, numFilter);
 
+
 eraSlider.noUiSlider.on('change', function (values, handle) {
-
-    //remove old layers
-    map.removeLayer(placesImported);
-    map.removeLayer(buildingsImported);
-    //get filter value from handle
-    eraFilter = values[handle];
-    //convert filters to numbers by language then rebuild places + popups; functions at bottom of code
-    if (langNumber==0) {
-    numFilter = getENFilterNumber(eraFilter);
-
-
-    placesImported = new L.geoJson(places,{
-      onEachFeature:popUpPlaces,
-      filter:
-      function(feature, layer) {
-        return (feature.properties.timelineNumber <= numFilter);
-      },
-    }).addTo(map);
-
-    }
-    else {
-      numFilter = getALFilterNumber(eraFilter);
-      placesImported = new L.geoJson(places,{
-        onEachFeature:popUpPlacesAL,
-        filter:
-        function(feature, layer) {
-          return (feature.properties.timelineNumber <= numFilter);
-        },
-      }).addTo(map);
-    }
-  //filter buildings based on timelineNumber
-  buildingsImported = new L.geoJSON(buildings, {
-      style: {
-          weight: 1,
-          color: "black",
-          opacity: .5,
-          fillOpacity: .3
-        },
-    filter:
-    function(feature, layer) {
-      return (feature.properties.timelineNumber <= numFilter);
-    },
-  }).addTo(map);
+  sliderMovement(values, handle);
 });
 
 //Could be used to create pop up box for contextual sites
@@ -221,55 +180,7 @@ function changeLanguage(lang) {
 
 
         eraSlider.noUiSlider.on('change', function (values, handle) {
-
-            eraFilter = values[handle];
-
-            if (english) {
-            numFilter = getENFilterNumber(eraFilter);
-        }
-        else {
-          numFilter = getALFilterNumber(eraFilter);
-        }
-
-            map.removeLayer(placesImported);
-            map.removeLayer(buildingsImported);
-
-            console.log(english);
-
-            if (english) {
-
-
-            placesImported = new L.geoJson(places,{
-              onEachFeature:popUpPlaces,
-              filter:
-              function(feature, layer) {
-                return (feature.properties.timelineNumber <= numFilter);
-              },
-          }).addTo(map);
-        }
-        else {
-          placesImported = new L.geoJson(places,{
-            onEachFeature:popUpPlacesAL,
-            filter:
-            function(feature, layer) {
-              return (feature.properties.timelineNumber <= numFilter);
-            },
-          }).addTo(map);
-
-        }
-
-          buildingsImported = new L.geoJSON(buildings, {
-            style: {
-                 weight: 1,
-                 color: "black",
-                 opacity: .5,
-                 fillOpacity: .3
-                },
-            filter:
-            function(feature, layer) {
-              return (feature.properties.timelineNumber <= numFilter);
-            },
-          }).addTo(map);
+          sliderMovement(values, handle);
         });
     }
 
@@ -299,56 +210,55 @@ function changeLanguage(lang) {
 
 
         eraSlider.noUiSlider.on('change', function (values, handle) {
-
-            eraFilter = values[handle];
-
-            if (english) {
-            numFilter = getENFilterNumber(eraFilter);
-        }
-        else {
-          numFilter = getALFilterNumber(eraFilter);
-        }
-
-            map.removeLayer(placesImported);
-            map.removeLayer(buildingsImported);
-
-
-            if (english) {
-            placesImported = new L.geoJson(places,{
-              onEachFeature:popUpPlaces,
-              filter:
-              function(feature, layer) {
-                return (feature.properties.timelineNumber <= numFilter);
-              },
-          }).addTo(map);
-        }
-        else {
-          placesImported = new L.geoJson(places,{
-            onEachFeature:popUpPlacesAL,
-            filter:
-            function(feature, layer) {
-              return (feature.properties.timelineNumber <= numFilter);
-            },
-          }).addTo(map);
-
-        }
-
-          buildingsImported = new L.geoJSON(buildings, {
-              style: {
-                  weight: 1,
-                  color: "black",
-                  opacity: .5,
-                  fillOpacity: .3
-                },
-            filter:
-            function(feature, layer) {
-              return (feature.properties.timelineNumber <= numFilter);
-            },
-          }).addTo(map);
-
+          sliderMovement(values, handle);
         });
 
     }
+}
+
+function sliderMovement(values, handle) {
+  map.removeLayer(placesImported);
+  map.removeLayer(buildingsImported);
+  //get filter value from handle
+  eraFilter = values[handle];
+  //convert filters to numbers by language then rebuild places + popups; functions at bottom of code
+  if (langNumber==0) {
+  numFilter = getENFilterNumber(eraFilter);
+
+
+  placesImported = new L.geoJson(places,{
+    onEachFeature:popUpPlaces,
+    filter:
+    function(feature, layer) {
+      return (feature.properties.timelineNumber <= numFilter);
+    },
+  }).addTo(map);
+
+  }
+  else {
+    numFilter = getALFilterNumber(eraFilter);
+    placesImported = new L.geoJson(places,{
+      onEachFeature:popUpPlacesAL,
+      filter:
+      function(feature, layer) {
+        return (feature.properties.timelineNumber <= numFilter);
+      },
+    }).addTo(map);
+  }
+  //filter buildings based on timelineNumber
+  buildingsImported = new L.geoJSON(buildings, {
+    style: {
+        weight: 1,
+        color: "black",
+        opacity: .5,
+        fillOpacity: .3
+      },
+  filter:
+  function(feature, layer) {
+    return (feature.properties.timelineNumber <= numFilter);
+  },
+  }).addTo(map);
+
 }
 
 function popUpPlaces(f, l) {
