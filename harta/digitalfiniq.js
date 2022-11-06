@@ -7,7 +7,9 @@ var mapOptions = {
      minZoom: 10,
      maxBounds: [[39.690784799474905, 19.81299812520738], [40.098806006678494, 20.262505016975012]],
      panControl: true,
-     fullscreenControl: true,
+     fullscreenControl: {
+        pseudoFullscreen: false // if true, fullscreen to page width and height
+    },
      touchZoom: true
  }
 var map = new L.map('map', mapOptions);
@@ -275,7 +277,7 @@ function changeLanguage(lang) {
 
             controls = L.control.layers(baseLayers, clusterLayers).addTo(map);
 
-           
+
         });
     }
     if (lang == "al") {
