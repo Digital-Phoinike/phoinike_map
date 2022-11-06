@@ -194,10 +194,10 @@ function changeLanguage(lang) {
             },
             tooltips:true,
             pips: {
-       mode: 'count',
-       values: 6,
-       density: 4
-   },
+        mode: 'count',
+        values: 4,
+        density: 25
+    },
             format: {
               to: function(value) {
               // Math.round and -1, so 1.00 => 0, 2.00 => 2, etc.
@@ -320,6 +320,11 @@ if (map.getZoom() >14){
                 'max': [3]
             },
             tooltips:true,
+            pips: {
+        mode: 'count',
+        values: 4,
+        density: 25
+    },
             format: {
               to: function(value) {
               // Math.round and -1, so 1.00 => 0, 2.00 => 2, etc.
@@ -646,6 +651,11 @@ noUiSlider.create(eraSlider, {
         'max': [3]
     },
     tooltips:true,
+    pips: {
+mode: 'count',
+values: 4,
+density: 25
+},
     format: {
       to: function(value) {
       // Math.round and -1, so 1.00 => 0, 2.00 => 2, etc.
@@ -772,10 +782,13 @@ else {
 
   map.on('zoomend', function() {
       if (map.getZoom() >14){
-
+        // To re-enable
+        eraSlider.removeAttribute('disabled');
             map.addLayer(placesImported);
               }
         else {
+          eraSlider.setAttribute('disabled', true);
+
 
                 map.removeLayer(placesImported);
             }
