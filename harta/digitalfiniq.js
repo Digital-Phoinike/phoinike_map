@@ -1,4 +1,4 @@
-﻿var hash = window.location.hash.substr(1);
+var hash = window.location.hash.substr(1);
 var mapOptions = {
      tap: false,
      center: [39.91381644734087, 20.055112781752946],
@@ -32,7 +32,7 @@ var openStreetMap = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.
                     maxNativeZoom:17,
                     maxZoom:20
                     });
-
+var langNumber=0;
 var numFilter=3;
 var placesImported = L.geoJson(places, {
   onEachFeature: popUpPlaces
@@ -247,18 +247,18 @@ function changeLanguage(lang) {
 
         }
             //Commented this part out for now...is it necessary?
-          //buildingsImported = new L.geoJSON(buildings, {
-          //    style: {
-          //        weight: 1,
-          //        color: "black",
-          //        opacity: .5,
-          //        fillOpacity: .3
-          //      },
-          //  filter:
-          //  function(feature, layer) {
-          //    return (feature.properties.numFilter <= numFilter);
-          //  },
-          //}).addTo(map);
+          buildingsImported = new L.geoJSON(buildings, {
+            style: {
+                 weight: 1,
+                 color: "black",
+                 opacity: .5,
+                 fillOpacity: .3
+                },
+            filter:
+            function(feature, layer) {
+              return (feature.properties.numFilter <= numFilter);
+            },
+          }).addTo(map);
 
           if (english) {
           clusterLayers = {
@@ -745,7 +745,7 @@ else {
         },
     filter:
     function(feature, layer) {
-      return (feature.properties.numFilter <= numFilter);
+      return (feature.properties.timelineNumber <= numFilter);
     },
   }).addTo(map);
 
