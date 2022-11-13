@@ -309,8 +309,10 @@ map.on('popupclose', function(e){
     map.keyboard.enable();
     map.zoomControl.addTo(map);
     //map.panControl.addTo(map);
+    if (mapWidth<650) {
     map.addControl(full);
     map.addControl(pan);
+  };
     //map.fullscreenControl.addTo(map);
     map.setMaxBounds([[39.690784799474905, 19.81299812520738], [40.098806006678494, 20.262505016975012]]);
 });
