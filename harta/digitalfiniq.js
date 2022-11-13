@@ -308,8 +308,10 @@ map.on('popupclose', function(e){
     map.boxZoom.enable();
     map.keyboard.enable();
     map.zoomControl.addTo(map);
-    map.panControl.addTo(map);
-    map.fullscreenControl.addTo(map);
+    //map.panControl.addTo(map);
+    map.addControl(full);
+    map.addControl(pan);
+    //map.fullscreenControl.addTo(map);
     map.setMaxBounds([[39.690784799474905, 19.81299812520738], [40.098806006678494, 20.262505016975012]]);
 });
 
@@ -347,8 +349,10 @@ map.on('popupopen', function (event) {
     map.boxZoom.disable();
     map.keyboard.disable();
     map.zoomControl.remove();
-    map.panControl.remove();
-    map.fullscreenControl.remove();
+    //map.panControl.remove();
+    //map.fullscreenControl.remove();
+    map.removeControl(full);
+    map.removeControl(pan);
     map.setMaxBounds([[37.17168400781412, 14.555219061565039],[44.937766393643194, 24.445555079300775]]);
     var popup = event.popup;
     var marker = popup._source;
