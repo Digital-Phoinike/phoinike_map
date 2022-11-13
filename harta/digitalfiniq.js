@@ -309,7 +309,7 @@ map.on('popupclose', function(e){
     map.keyboard.enable();
     map.zoomControl.addTo(map);
     //map.panControl.addTo(map);
-    if (mapWidth<650) {
+    if (mapWidth>650) {
     map.addControl(full);
     map.addControl(pan);
   };
