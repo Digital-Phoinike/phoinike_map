@@ -523,13 +523,24 @@ function sliderCreation (langNumber, numFilter) {
       from: Number
     }
 })
+if (langNumber==0) {
 placesImported = new L.geoJson(places,{
-  onEachFeature:popUpPlacesAL,
+  onEachFeature:popUpPlaces,
   filter:
   function(feature, layer) {
     return (feature.properties.timelineNumber <= numFilter);
   },
-});
+})
+}
+else {
+  placesImported = new L.geoJson(places,{
+    onEachFeature:popUpPlacesAL,
+    filter:
+    function(feature, layer) {
+      return (feature.properties.timelineNumber <= numFilter);
+    },
+  })
+};
 if (map.getZoom() >14){
   placesImported.addTo(map);
 };
