@@ -34,7 +34,7 @@
         select {
             z-index: 1000;
             position: absolute;
-            bottom: 35px;
+            bottom: 1px;
             left: 1px;
             padding: 5px;
             color: white;
@@ -43,7 +43,7 @@
         .leaflet-control-pan a {background-color: rgba(94, 8, 11, .8);}
         .leaflet-control-pan {color:white;}
         .noUi-pips-horizontal {
-top:-150%;
+            top:-150%;
         }
         .noUi-marker-large {
           color:#FFF;
@@ -51,22 +51,29 @@ top:-150%;
         .noUi-value-horizontal {
           display:none;
         }
-        .noUi-horizontal .noUi-tooltip {font-size: 12px;}
-        .noUi-marker-horizontal.noUi-marker-large { height:10px;}
+        .noUi-horizontal .noUi-tooltip {font-size: 16px;}
+        .noUi-marker-horizontal.noUi-marker-large { height:20px;}
+
         #sliderunderlay {
             border: 2px solid white;
             border-radius: 6px;
             box-sizing: border-box;
             position: absolute;
             width: 35%;
-            height: 8%;
-            bottom: 4%;
+            height: 5%;
+            bottom: 0%;
             left: 52%;
             z-index: 800;
             background-color: rgba(94, 8, 11, .8);
             opacity: 1
         }
-        #slider {width:90%; height: 40%; left:5%; top: 30%;}
+        #slider {
+            width:90%;
+            height: 40%;
+            left:5%;
+            top: 30%;
+
+        }
     </style>
     <style type="text/css" media="screen">
         html {
@@ -80,6 +87,7 @@ top:-150%;
         <select id="languages" style="border: 2px solid white; background: rgba(94, 8, 11, .8); border-radius: 6px">
             <option value="en">English</option>
             <option value="al">Shqip</option>
+            <option value="it">Italiano</option>
         </select>
         <div id = "sliderunderlay">
           <div id="slider"></div>
