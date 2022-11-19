@@ -195,19 +195,26 @@ function changeLanguage(lang) {
     });
 }
 
+function updateLocationLanguage(lang) {
+    if (positionShown == true) {
+        if (langNumber == 0) {
+            current_position.setTooltipContent("Your location");
+        }
+        else if (langNumber == 1) {
+            current_position.setTooltipContent("Vendndodhja juaj");
+        }
+        else if (langNumber == 2) {
+            current_position.setTooltipContent("La tua posizione");
+        }
+    }
+}
+
 function sliderMovement(values, handle) {
     map.removeLayer(placesImported);
     map.removeLayer(buildingsImported);
     //convert filters to numbers by language then rebuild places + popups; functions at bottom of code
     numFilter = getFilterNumber(values[handle]);
-    if (langNumber == 0) {
-        currentLangPlaces = popUpPlaces;
-    }
-    else if (langNumber == 1) {
-        currentLangPlaces = popUpPlacesAL;
-    }
-    else if (langNumber == 2) {
-    }
+
     placesImported = new L.geoJson(places, {
         onEachFeature: currentLangPlaces,
         filter:
@@ -487,19 +494,6 @@ if (width>650) {
   map.addControl(pan);
 }
 
-function updateLocationLanguage(lang) {
-    if (positionShown == true) {
-        if (langNumber == 0) {
-            current_position.setTooltipContent("Your location");
-        }
-        else if (langNumber == 1) {
-            current_position.setTooltipContent("Vendndodhja juaj");
-        }
-        else if (langNumber == 2) {
-            current_position.setTooltipContent("La tua posizione");
-        }
-    }
-}
 
 
 function sliderCreation (langNumber, numFilter) {
@@ -544,13 +538,18 @@ function sliderCreation (langNumber, numFilter) {
     else if (langNumber == 2) {
         currentLangPlaces = popUpPlacesIT;
     }
+
     placesImported = new L.geoJson(places, {
         onEachFeature: currentLangPlaces,
         filter:
             function (feature, layer) {
                 return (feature.properties.timelineNumber <= numFilter);
             },
-    }).addTo(map);
+    }); 
+
+    if (map.getZoom() >14){
+        placesImported.addTo(map);
+        };
 
     allSites = L.geoJSON(contextualSites, {
         onEachFeature: currentLangPlaces,
@@ -566,10 +565,6 @@ function sliderCreation (langNumber, numFilter) {
             return L.circleMarker(latlng, markerStyle);
         }
     }).addTo(map);
-
-if (map.getZoom() >14){
-  placesImported.addTo(map);
-};
 }
 
 //functions for converting timeline text to numbers
@@ -628,7 +623,8 @@ slider.addEventListener('touchend', function () {
       if (map.getZoom() >14){
         // To re-enable
         eraSlider.removeAttribute('disabled');
-            map.addLayer(placesImported);
+          map.addLayer(placesImported);
+
               }
         else {
           eraSlider.setAttribute('disabled', true);
