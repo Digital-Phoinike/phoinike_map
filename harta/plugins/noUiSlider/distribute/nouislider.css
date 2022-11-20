@@ -88,13 +88,13 @@
 /* Slider size and handle placement;
  */
 .noUi-horizontal {
-  height: 18px;
+  height: 20%;
 }
 .noUi-horizontal .noUi-handle {
   width: 34px;
   height: 28px;
   right: -17px;
-  top: -6px;
+  top: -7px;
 }
 .noUi-vertical {
   width: 18px;
@@ -133,11 +133,13 @@
   cursor: ns-resize;
 }
 .noUi-handle {
-  border: 1px solid #D9D9D9;    
-  border-radius: 3px;
-  background: white;
-  cursor: default;
-  box-shadow: inset 0 0 1px #FFF, inset 0 1px 7px #EBEBEB, 0 3px 6px -3px #BBB;
+    border: 1px solid #D9D9D9;
+    border-radius: 50px;
+    background: white;
+    cursor: default;
+    box-shadow: inset 0 0 1px #FFF, inset 0 1px 7px #EBEBEB, 0 3px 6px -3px #BBB;
+    position: absolute;
+
 }
 .noUi-active {
   box-shadow: inset 0 0 1px #FFF, inset 0 1px 7px #DDD, 0 3px 6px -3px #BBB;
@@ -149,11 +151,12 @@
     content: "";
     display: block;
     position: absolute;
-    height: 14px;
+    height: 50%;
     width: 1px;
     background: black;
-    left: 14px;
-    top: 6px;
+    left: 40%;
+    right: 40%;
+    top: 25%;
 }
 .noUi-handle:after {
   left: 17px;
@@ -207,13 +210,13 @@
  */
 .noUi-marker {
   position: absolute;
-  background: #CCC;
+  background: black;
 }
 .noUi-marker-sub {
-  background: #AAA;
+    background: black;
 }
 .noUi-marker-large {
-  background: #AAA;
+    background: black;
 }
 /* Horizontal layout;
  *
