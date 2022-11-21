@@ -1,13 +1,14 @@
 var hash = window.location.hash.substr(1);
 var mapOptions = {
-     tap: false,
-     center: [39.91381644734087, 20.059],
-     zoom: 16,
-     maxZoom : 20,
-     minZoom: 10,
-     maxBounds: [[39.690784799474905, 19.81299812520738], [40.098806006678494, 20.262505016975012]],
-     //panControl: true,
-     touchZoom: true
+    tap: false,
+    center: [39.91381644734087, 20.059],
+    zoom: 16,
+    maxZoom: 20,
+    minZoom: 10,
+    maxBounds: [[39.690784799474905, 19.81299812520738], [40.098806006678494, 20.262505016975012]],
+    //panControl: true,
+    touchZoom: true,
+    attributionControl: false
  }
 var map = new L.map('map', mapOptions);
 var mapWidth = map.getSize().x;
