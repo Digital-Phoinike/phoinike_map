@@ -384,7 +384,7 @@ map.on('popupopen', function (event) {
         else if (langNumber == 2) {
             captionUpdate = marker.feature.properties.ITCaption;
         }
-       
+
         var imageHTML = '<center><br><img src ="' + imageUpdate + '" width ="' + imageWidth + '" height ="' + imageHeight + '" border = 2px solid white> <br>' + captionUpdate + '</center>'
         marker._popup.setContent(originalContent + imageHTML);
     }
@@ -507,7 +507,7 @@ function sliderCreation (langNumber, numFilter) {
         'max': [3]
     },
     tooltips:true,
-    //removed for now because they were causing too many problems 
+    //removed for now because they were causing too many problems
     //pips: {
     //    mode: 'count',
     //    values: 4,
@@ -547,7 +547,7 @@ function sliderCreation (langNumber, numFilter) {
             function (feature, layer) {
                 return (feature.properties.timelineNumber <= numFilter);
             },
-    }); 
+    });
 
     if (map.getZoom() >14){
         placesImported.addTo(map);
@@ -608,18 +608,26 @@ function getFilterNumber(filter) {
     map.dragging.enable();
   });
 
+
+
 //disable panning while sliding - mobile (not working)
 
-slider.addEventListener('touchstart', function () {
-    map.dragging.disable();
-});
+/*slider.addEventListener('click', function(e) {
+    // Prevent carousel swipe
+    e.stopPropagation();
+}); */
 
 
 
 // Re-enable dragging when touch finishes on element - mobile (not working)
 
-slider.addEventListener('touchend', function () {
-    map.dragging.enable();
+slider.addEventListener('touchstart', function () {
+    //map.dragging.enable();
+    console.log("start touch");
+    map.on('drag', function(e) {
+     $(this).dragging.disable();
+     return false;
+});
 });
 
 //Disable Slider when zoomed out and remove Phoenike individual locations
