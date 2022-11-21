@@ -610,25 +610,6 @@ function getFilterNumber(filter) {
 
 
 
-//disable panning while sliding - mobile (not working)
-
-/*slider.addEventListener('click', function(e) {
-    // Prevent carousel swipe
-    e.stopPropagation();
-}); */
-
-
-
-// Re-enable dragging when touch finishes on element - mobile (not working)
-
-slider.addEventListener('touchstart', function () {
-    //map.dragging.enable();
-    console.log("start touch");
-    map.on('drag', function(e) {
-     $(this).dragging.disable();
-     return false;
-});
-});
 
 //Disable Slider when zoomed out and remove Phoenike individual locations
   map.on('zoomend', function() {
