@@ -24,7 +24,8 @@ var Esri_WorldImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest
             maxNativeZoom: 17}).addTo(map);
 var openStreetMap = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                     maxNativeZoom:17
-                    });
+});
+
 //initial language set to English and Roman Period for filtering
 var langNumber=0;
 var numFilter=3;
@@ -598,7 +599,7 @@ function getFilterNumber(filter) {
 
 //disable panning while sliding - desktop
   slider.addEventListener('mouseover', function () {
-    map.dragging.disable();
+      map.dragging.disable();
   });
 
 // Re-enable dragging when user's cursor leaves the element - desktop
@@ -607,13 +608,15 @@ function getFilterNumber(filter) {
     map.dragging.enable();
   });
 
-//disable panning while sliding - mobile
+//disable panning while sliding - mobile (not working)
 
 slider.addEventListener('touchstart', function () {
     map.dragging.disable();
 });
 
-// Re-enable dragging when touch finishes on element - mobile
+
+
+// Re-enable dragging when touch finishes on element - mobile (not working)
 
 slider.addEventListener('touchend', function () {
     map.dragging.enable();
