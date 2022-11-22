@@ -489,6 +489,7 @@ if (width<650) {
 map.locate({ setView: false, watch: true });
 map.on('locationfound', onLocationFound);
 map.on('locationerror', onLocationError);
+map.addControl(full);
 };
 
 if (width>650) {
