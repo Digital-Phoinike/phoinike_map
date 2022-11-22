@@ -7,6 +7,8 @@ var mapOptions = {
     minZoom: 10,
     maxBounds: [[39.690784799474905, 19.81299812520738], [40.098806006678494, 20.262505016975012]],
     //panControl: true,
+    fullscreenControl:true,
+    //fullscreenControlOptions: {position:'topleft'},
     touchZoom: true,
     attributionControl: false
  }
@@ -310,7 +312,7 @@ map.on('popupclose', function(e){
     map.zoomControl.addTo(map);
     //map.panControl.addTo(map);
     if (mapWidth>650) {
-    map.addControl(full);
+    //map.addControl(full);
     map.addControl(pan);
   };
     //map.fullscreenControl.addTo(map);
@@ -352,7 +354,7 @@ map.on('popupopen', function (event) {
     map.zoomControl.remove();
     //map.panControl.remove();
     //map.fullscreenControl.remove();
-    map.removeControl(full);
+    //map.removeControl(full);
     map.removeControl(pan);
     map.setMaxBounds([[37.17168400781412, 14.555219061565039],[44.937766393643194, 24.445555079300775]]);
     var popup = event.popup;
@@ -481,7 +483,7 @@ function onLocationError(e) {
     }
  }
 
-var full = new L.Control.Fullscreen();
+//var full = new L.Control.Fullscreen();
 var pan = new L.Control.Pan();
 
 var width=window.innerWidth;
@@ -489,11 +491,11 @@ if (width<650) {
 map.locate({ setView: false, watch: true });
 map.on('locationfound', onLocationFound);
 map.on('locationerror', onLocationError);
-map.addControl(full);
+//map.addControl(full);
 };
 
 if (width>650) {
-  map.addControl(full);
+  //map.addControl(full);
   map.addControl(pan);
 }
 
