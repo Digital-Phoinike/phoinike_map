@@ -596,21 +596,16 @@ function getFilterNumber(filter) {
     }
 }
 
-
 //disable panning while sliding - desktop
-  slider.addEventListener('mouseover', function () {
-      map.dragging.disable();
-  });
 
-// Re-enable dragging when user's cursor leaves the element - desktop
+slider.noUiSlider.on('start', function(e) {
+  map.dragging.disable();
+});
 
-  slider.addEventListener('mouseout', function () {
-    map.dragging.enable();
-  });
+slider.noUiSlider.on('end', function(e) {
+map.dragging.enable();
 
-
-
-
+})
 //Disable Slider when zoomed out and remove Phoenike individual locations
   map.on('zoomend', function() {
       if (map.getZoom() >14){
