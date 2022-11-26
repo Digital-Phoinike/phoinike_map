@@ -7,7 +7,7 @@ var mapOptions = {
     minZoom: 10,
     maxBounds: [[39.690784799474905, 19.81299812520738], [40.098806006678494, 20.262505016975012]],
     //panControl: true,
-    fullscreenControl:true,
+    //fullscreenControl:true,
     //fullscreenControlOptions: {position:'topleft'},
     touchZoom: true,
     attributionControl: false
@@ -484,7 +484,7 @@ function onLocationError(e) {
     }
  }
 
-//var full = new L.Control.Fullscreen();
+var full = new L.Control.Fullscreen();
 var pan = new L.Control.Pan();
 
 var width=window.innerWidth;
@@ -498,11 +498,11 @@ if (width<650) {
 map.locate({ setView: false, watch: true });
 map.on('locationfound', onLocationFound);
 map.on('locationerror', onLocationError);
-//map.addControl(full);
+map.removeControl(full);
 };
 
 if (width>650) {
-  //map.addControl(full);
+  map.addControl(full);
   map.addControl(pan);
 }
 
