@@ -493,7 +493,7 @@ if (width<650) {
   welcomeDialog.setContent("Hello, and welcome to the Phoinike Interactive Map! To better experience the map on mobile, click " + "<a target='_blank' href='https://digital-phoinike.github.io/phoinike_map/harta/index.html'>here</a>" + " to view the map in full-screen.")
   welcomeDialog.addTo(map);
   welcomeDialog.open();
-  welcomeDialog.setSize([250,125]);
+  welcomeDialog.setSize([210,135]);
   welcomeDialog.setLocation( [100, 50] );
 map.locate({ setView: false, watch: true });
 map.on('locationfound', onLocationFound);
