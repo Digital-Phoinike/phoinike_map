@@ -490,11 +490,11 @@ var pan = new L.Control.Pan();
 var width=window.innerWidth;
 if (width<650) {
   var welcomeDialog = L.control.dialog();
-  welcomeDialog.setContent("Hello, and welcome to the Phoinike Interactive Map! To better experience the map on mobile, click " + "<a href='https://digital-phoinike.github.io/phoinike_map/harta/index.html'>here</a>" + " to view the map in full-screen.")
+  welcomeDialog.setContent("Hello, and welcome to the Phoinike Interactive Map! To better experience the map on mobile, click " + "<a target='_blank' href='https://digital-phoinike.github.io/phoinike_map/harta/index.html'>here</a>" + " to view the map in full-screen.")
   welcomeDialog.addTo(map);
   welcomeDialog.open();
-  welcomeDialog.setSize([250,202]);
-  welcomeDialog.setLocation( [ 45, 45 ] );
+  welcomeDialog.setSize([250,125]);
+  welcomeDialog.setLocation( [100, 50] );
 map.locate({ setView: false, watch: true });
 map.on('locationfound', onLocationFound);
 map.on('locationerror', onLocationError);
