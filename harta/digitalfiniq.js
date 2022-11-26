@@ -614,16 +614,20 @@ slider.noUiSlider.on('end', function(e) {
 map.dragging.enable();
 
 })
+
 //Disable Slider when zoomed out and remove Phoenike individual locations
   map.on('zoomend', function() {
       if (map.getZoom() >14){
         // To re-enable
-        eraSlider.removeAttribute('disabled');
+        //eraSlider.removeAttribute('disabled');
+          document.getElementById("sliderunderlay").style.zIndex = "1000";
           map.addLayer(placesImported);
 
               }
         else {
-          eraSlider.setAttribute('disabled', true);
+          //eraSlider.setAttribute('disabled', true);
+          document.getElementById("sliderunderlay").style.zIndex = "-1";
+          console.log("zoomed out");
           map.removeLayer(placesImported);
         }
   });
