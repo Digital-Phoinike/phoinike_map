@@ -649,7 +649,6 @@ map.dragging.enable();
         else {
           //eraSlider.setAttribute('disabled', true);
           document.getElementById("sliderunderlay").style.zIndex = "-1";
-          console.log("zoomed out");
           map.removeLayer(placesImported);
         }
   });
