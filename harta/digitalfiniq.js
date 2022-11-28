@@ -122,6 +122,7 @@ var current_position
 var positionShown = false;
 var needToNotifyDistance = true;
 var needToNotifySettings = true;
+var needToNotifySize = true;
 var currentLangPlaces;
 
 
@@ -409,40 +410,52 @@ map.on('popupopen', function (event) {
 map.whenReady(function () {
         //Theater
         if (hash == "0") {
+            needToNotifySize = false;
             placesImported._layers[26].openPopup();
         }
         //House of Two Peristyles
         if (hash == "1") {
-            placesImported._layers[28].openPopup();
-        }
+            needToNotifySize = false;
+                placesImported._layers[28].openPopup();
+            }
         //Baths
 
         if (hash == "2") {
+            needToNotifySize = false;
             placesImported._layers[29].openPopup();
         }
         //Agora and Basilica
         if (hash == "3") {
+            needToNotifySize = false;
             placesImported._layers[30].openPopup();
         }
         //House of the Frescoes
         if (hash == "4") {
+            needToNotifySize = false;
             placesImported._layers[31].openPopup();
         }
         //Walls
         if (hash == "5") {
+            needToNotifySize = false;
             placesImported._layers[32].openPopup();
         }
         //Necropolis
         if (hash == "6") {
+            needToNotifySize = false;
             placesImported._layers[33].openPopup();
         }
         //Cistern
         if (hash == "7") {
+            needToNotifySize = false;
             placesImported._layers[34].openPopup();
         }
         //Stoa
         if (hash == "8") {
+            needToNotifySize = false;
             placesImported._layers[35].openPopup();
+        }
+        if (hash == "mobile_fs") {
+            needToNotifySize = false;
         }
 });
 
@@ -487,14 +500,21 @@ function onLocationError(e) {
 var full = new L.Control.Fullscreen();
 var pan = new L.Control.Pan();
 
-var width=window.innerWidth;
-if (width<650) {
-  var welcomeDialog = L.control.dialog();
-  welcomeDialog.setContent("Hello, and welcome to the Phoinike Interactive Map! To better experience the map on mobile, click " + "<a target='_blank' href='https://digital-phoinike.github.io/phoinike_map/harta/index.html'>here</a>" + " to view the map in full-screen.")
-  welcomeDialog.addTo(map);
-  welcomeDialog.open();
-  welcomeDialog.setSize([210,135]);
-  welcomeDialog.setLocation( [100, 50] );
+function sendMobileToFS() {
+
+}
+
+var width = window.innerWidth;
+if (width < 650) {
+    if (needToNotifySize) {
+        var welcomeDialog = L.control.dialog();
+        welcomeDialog.setContent("Hello, and welcome to the Phoinike Interactive Map! To better experience the map on mobile, click " + "<a target='_blank' href='https://digital-phoinike.github.io/phoinike_map/harta/index.html#mobile_fs'>here</a>" + " to view the map in full-screen.")
+        welcomeDialog.addTo(map);
+        welcomeDialog.open();
+        welcomeDialog.setSize([210, 135]);
+        welcomeDialog.setLocation([100, 50]);
+    }
+
 map.locate({ setView: false, watch: true });
 map.on('locationfound', onLocationFound);
 map.on('locationerror', onLocationError);
