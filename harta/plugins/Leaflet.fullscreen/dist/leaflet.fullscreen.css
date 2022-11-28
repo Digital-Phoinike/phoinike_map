@@ -4,7 +4,7 @@
     background-size: 26px 52px;
 }
       .leaflet-touch .leaflet-control-fullscreen a {
-        background-position: 2px 2px;
+        //background-position: 2px 2px;
         }
       .leaflet-fullscreen-on .leaflet-control-fullscreen a {
         background-position:0 -26px;

@@ -313,7 +313,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
 .leaflet-touch .leaflet-bar a {
 	width: 30px;
 	height: 30px;
-	line-height: 30px;
+	//line-height: 30px;
 	}
 	.leaflet-touch .leaflet-bar a:first-child {
 		border-radius: 6px;
