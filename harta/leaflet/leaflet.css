@@ -335,6 +335,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
 .leaflet-touch .leaflet-control-zoom-in, .leaflet-touch .leaflet-control-zoom-out  {
 	font-size: 22px;
     color: white;
+	vertical-align: text-bottom;
 	}
 
 
