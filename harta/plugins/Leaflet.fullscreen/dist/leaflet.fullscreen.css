@@ -10,7 +10,7 @@
         background-position:0 -26px;
         }
       .leaflet-touch.leaflet-fullscreen-on .leaflet-control-fullscreen a {
-        background-position: 2px -24px;
+        //background-position: 2px -24px;
         }
 /*.leaflet-control-fullscreen a:hover {
     background: white url(fullscreen.png) no-repeat 0 0;
