@@ -469,18 +469,25 @@ function onLocationFound(e) {
         }
         current_position = L.circle(e.latlng, 7).addTo(map);
         positionShown = true;
-        if (english) {
+        if (langNumber == 0) {
             current_position.bindTooltip("Your location", { permanent: true, direction: "bottom" });
         }
-        else {
+        else if (langNumber == 1) {
             current_position.bindTooltip("Vendndodhja juaj", { permanent: true, direction: "bottom" });
         }
+        else if (langNumber == 2) {
+            current_position.bindTooltip("La tua posizione", { permanent: true, direction: "bottom" });
+        }
+
         current_position.addEventListener('click', function () {
-            if (english) {
+            if (langNumber == 0) {
                 current_position.bindTooltip("Your location", { permanent: true, direction: "bottom" });
             }
-            else {
+            else if (langNumber == 1) {
                 current_position.bindTooltip("Vendndodhja juaj", { permanent: true, direction: "bottom" });
+            }
+            else if (langNumber == 2) {
+                current_position.bindTooltip("La tua posizione", { permanent: true, direction: "bottom" });
             }
         });
     }
