@@ -85,21 +85,21 @@ var streetsImported = L.geoJSON(streets, {
         }
     });
 var infoIcon = L.icon({
-    iconUrl: 'infoNew.png',
+    iconUrl: 'info.png',
     iconSize: [100, 75], // size of the icon
-    iconAnchor: [75, 100], // point of the icon which will correspond to marker's location
+    iconAnchor: [50, 100], // point of the icon which will correspond to marker's location
     popupAnchor: [0, -25] // point from which the popup should open relative to the iconAnchor
     });
 var infoIconAl = L.icon({
     iconUrl: 'infoAL.png',
-    iconSize: [150, 75], // size of the icon
-    iconAnchor: [75, 100], // point of the icon which will correspond to marker's location
+    iconSize: [100, 75], // size of the icon
+    iconAnchor: [50, 100], // point of the icon which will correspond to marker's location
     popupAnchor: [0, -25] // point from which the popup should open relative to the iconAnchor
 });
 var infoIconIT = L.icon({
     iconUrl: 'infoIT.png',
-    iconSize: [150, 75], // size of the icon
-    iconAnchor: [75, 100], // point of the icon which will correspond to marker's location
+    iconSize: [100, 75], // size of the icon
+    iconAnchor: [50, 100], // point of the icon which will correspond to marker's location
     popupAnchor: [0, -25] // point from which the popup should open relative to the iconAnchor
 });
 var entrancePopup = "<center><b>Ancient Phoenike</b></center><br>The settlement of ancient Phoenike was one of the largest communities in the region of Epirus during the Hellenistic period and was the capital of Chaonia, one of the fourteen Epirote tribal regions. While evidence from the 5th and 4th centuries BCE point to the settlement’s earliest origins, its true urban development dates primarily to its Hellenistic phase in the 3rd century BCE, culminating in the city emerging as the capital of the Epirote League. During the Third Macedonian War, the region of Chaonia supported the Roman Republic, resulting in Phoenike being spared from Roman destruction when the war ended in 168 BCE. As a Roman community, Phoenike lasted for several centuries and experienced an important phase under the Byzantine Emperor Justinian during the 6th century CE. During this period, Phoenike became a vescoval see and featured a variety of early Christian religious buildings.<br><br>First excavated by Luigi Maria Ugolini in the 1920s, later by Albanian archaeologists, and more recently by an Albanian-Italian collaboration between the Institute of Archaeology and University of Bologna, the history of Phoenike continues to be written as archaeologists peel back its layers year-by-year. This interactive map tells the story of the most important archaeological discoveries over the past century, including grand public buildings, monumental defensive structures, fascinating private residences, and a multilayered burial ground which served as the final resting place for centuries of generations of the settlement’s inhabitants. Within the map, occasional links to 3D content help bring this story to life and illustrate the reconstructions imagined by archaeologists who have excavated and studied this site. <br><br>Enjoy your exploration of ancient Phoenike!<br><br><i>Designed and created by <b>Sabian Hasani and Tyler Duane Johnson</b> with the support of the <b>Albanian Ministry of Culture</b> and the <b>Albanian-Italian Archaeological Mission at Phoenike</b></i><br><br>";
