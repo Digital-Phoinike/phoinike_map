@@ -155,7 +155,7 @@ var places = {
                 "ITDate": "",
                 "ITDescriptio": "some Italian text",
                 "ITCaption": "Italian caption"
-            }, "geometry": { "type": "Point", "coordinates": [20.054879963869261, 39.911908791326368, 0.0] }
+            }, "geometry": { "type": "Point", "coordinates": [20.050942322439486, 39.90908238200553, 0.0] }
         },
         {
             "type": "Feature",
@@ -200,6 +200,6 @@ var places = {
                 "ITDescriptio": "some Italian text",
                 "ITCaption": "Italian caption"
             }, "geometry": { "type": "Point", "coordinates": [20.060832478444699, 39.911644067953603, 0.0] }
-        }
+        },
     ]
 }
