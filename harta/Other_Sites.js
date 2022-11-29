@@ -23,8 +23,7 @@ var contextualSites = {
                 "ITDate": "3 ° secolo aC",
                 "ITDescriptio": "La fattoria fortificata di Malathre (o Malahuna) si trova su una bassa collina sul versante sud della dorsale montuosa di Mali Milet, nella bassa valle del fiume Pavllë. Il sito è a 2 km dall’insediamento fortificato di Çukë e Ajtoit e a 10 km circa dall’antica città di Butrinto.\r\n\r\nI resti attualmente visibili appartengono a un edificio con due fasi edilizie. Nella prima, databile all’età ellenistica, dalla seconda metà del III secolo a.C., viene costruito un edificio quadrangolare (15 x 15 m), con un cortile centrale scoperto e quattro torri quadrate negli angoli, sporgenti verso l’esterno. L’ingresso si apriva sul lato occidentale e forse esisteva un secondo piano. Non è certo se all’inizio fosse una piccola fortezza oppure la farmhouse di un ricco privato, destinata a proteggere i prodotti del proprietario. Nella seconda fase, in età romana nel I secolo a.C., le due torri a nord sono demolite e l’edificio viene ingrandito: esternamente, sui lati est, ovest e nord sono aggiunti ambienti di varie dimensioni e l’ingresso è spostato sul lato sud. La scoperta di frammenti di grandi contenitori (pithoi), anfore da trasporto e macine indica che in questo momento probabilmente diventa una villa rustica, ossia una residenza in campagna con scopi produttivi. Sulla base dei materiali rinvenuti nel corso degli scavi, il sito viene abbandonato nel IV secolo d.C.",
                 "ITCaption": null,
-                "Bibliography": null,
-                "Field": null
+                "ThreeD": "https://sketchfab.com/3d-models/malathrea-albania-81bc2aa5a52d42dc8f65552167ea347c"
             }
         }, {
             "type": "Feature",
@@ -48,8 +47,7 @@ var contextualSites = {
                 "ITDate": "4 ° secolo aC",
                 "ITDescriptio": "L’insediamento fortificato sorge sulla solitaria collina di Çuka e Ajtojit, poco distante dal Konispol e dal confine moderno tra Grecia e Albania. Il sito è stato identificato come l’antica Kestrìa di cui parla Plinio il Vecchio, e che dà il nome anche alla regione circostante (Kestrine). Çuka e Ajtojit vive una lunga fase di occupazione, che va dall’età preistorica fino all’età medievale: gli edifici presenti sulla collina sono di piccole dimensioni e spesso direttamente scavati nella roccia. Tra gli elementi più distintivi del sito c’è il circuito murario di età ellenistica (IV-III secolo a.C.), dotato di quattro porte di accesso, costruito impiegando numerose tecniche differenti (opera poligonale, opera trapezoidale, opera pseudoisodoma, opera quasi quadrata) così da adattarsi al ripido banco roccioso. Al di fuori del circuito murario sono presenti due complessi di grandi dimensioni, la cui funzione originaria non è ancora stata scoperta ma si ritiene che potessero essere legati allo sfruttamento del territorio. L’insediamento è stato scavato per la prima volta da Luigi Maria Ugolini nel 1929, e successivamente indagato da Neritan Ceka nel 1958 e 1959 e da Selim Islami tra gli anni 1970 e 1980. Dal 2021 è attivo un nuovo progetto di ricerca impegnato in scavi archeologici diretti dall’Università La Sapienza di Roma e dall’Istituto Albanese di Archeologia. ",
                 "ITCaption": null,
-                "Bibliography": "",
-                "Field": null
+                "ThreeD": ""
             }
         }, {
             "type": "Feature",
@@ -73,8 +71,7 @@ var contextualSites = {
                 "ITDate": "3 ° secolo aC",
                 "ITDescriptio": "La fattoria fortificata di Çumporë si trova sulla bassa dorsale costiera dominata dal monastero di Santi Quaranta e dal castello di Lëkurësi e sorge su uno stretto plateau che guarda a est l’antica città di Phoinike e a ovest il Mar Ionio. Il sito gode di un’ottima vista sulla piana di Vurgu e si trova a meno di 1 km dal sito di Çukë e Sarandës e a circa 3 km dal sito di Metoq.\r\nI resti appartengono a un complesso con torre centrale e muro di cinta, a cui si addossano alcune stanze che occupano la parte est della superficie compresa al suo interno. Dalle informazioni provenienti dagli scavi archeologici, la costruzione dell’edificio risale all’età ellenistica, alla fine del III/inizi del II secolo a.C., mentre durante l’età romana nel I secolo d.C. subisce una ristrutturazione. Forse viene utilizzato anche successivamente fino al IV secolo d.C.\r\nLa parte meglio conservata è la torre centrale quadrangolare. Essa è suddivisa in quattro stanze di varie dimensioni e in origine doveva avere almeno un secondo piano, come testimonia la presenza di una rampa di scale. Nella fase di età romana vengono costruiti dei muri all’interno delle stanze addossate al muro di cinta, così da ottenere un numero maggiore di ambienti di dimensioni più piccole.\r\nGeneralmente il sito è interpretato come la residenza di un ricco proprietario terriero che in età romana viene trasformata in una vera e propria villa rustica, ossia una dimora situata in campagna con scopi produttivi.",
                 "ITCaption": null,
-                "Bibliography": "",
-                "Field": null
+                "ThreeD": ""
             }
         }, {
             "type": "Feature",
@@ -98,8 +95,7 @@ var contextualSites = {
                 "ITDate": "11 ° secolo dC",
                 "ITDescriptio": "Presso il villaggio di Mesopotam, a sud-est di Phoinike, si trova il complesso di Shën Kolli (San Nicola) posto su una bassa altura alla sinistra del fiume Bistrica. Il complesso era formato da un monastero protetto da una cinta muraria (lunga 333 m circa) munita di torri, ad oggi scarsamente conservate, e da una chiesa bizantina, attualmente visitabile e dedicata a San Nicola. Alcuni saggi di scavo, effettuati dall’archeologo A. Meksi, permettono di ricostruire una pianta a croce greca (22 x 36 m) con due absidi e una navata unica, divisa internamente da colonnati trasversali con quattro colonne e pilastro centrale (aggiunto successivamente). All’interno si distinguono perciò tre ambienti: il naos centrale, coperto da quattro cupole che poggiano su pilastri, e due aree laterali coperte da volte a vela. In tempi moderni, a causa di un crollo nel corso del XVIII secolo, la ricostruzione della parte orientale della chiesa presenta una sola abside. La maggior parte della struttura visibile della chiesa, nonostante i crolli e i successivi restauri, è databile all’XIII secolo d.C., sebbene alcuni elementi fanno supporre una fase più antica del monastero (XI sec.). Inoltre sono visibili, sia nell’area del sito sia all’interno della chiesa alcuni frammenti architettonici (capitelli, fusti di colonna) riferibili al periodo romano, mentre nelle facciate della chiesa sono riutilizzati numerosi blocchi di opera rettangolare, forse in origine pertinenti a un edificio di culto ellenistico. Le ricognizioni nel territorio circostante hanno anche individuato alcuni resti riferibili a una vicina necropoli di età ellenistico-romana, tra cui alcune stele ora visibili nel cortile della chiesa.",
                 "ITCaption": null,
-                "Bibliography": null,
-                "Field": null
+                "ThreeD": null
             }
         }, {
             "type": "Feature",
@@ -123,8 +119,7 @@ var contextualSites = {
                 "ITDate": "3 ° secolo aC",
                 "ITDescriptio": "La fattoria fortificata di Metoqi si trova sulle basse colline a est di Gjashtë, sopra la piana di Vurgu, che le separa dall’antica città di Phoinike, dall’altro lato della valle.\r\n\r\nPresso la chiesa di Shën Gjergji ci sono i resti di un edificio con torre centrale e muro di cinta. Sembrerebbe che una serie di stanze fosse addossata a questo muro dalla parte interna, sui lati est, nord e ovest; attualmente non sono più visibili. Meglio conservata è la torre centrale a pianta quadrata, con corridoio di accesso e due ambienti. Gli scavi degli archeologi albanesi tra la fine degli anni ’80 e l’inizio degli anni ’90 del secolo scorso hanno permesso di individuare due fasi: la prima, quando l’edificio fu costruito, in età ellenistica (III/II secolo a.C.) e la seconda in età romana (I-IV secolo d.C.), quando venne ristrutturato. Sono stati scoperti frammenti di grandi contenitori (pithoi) per la prima fase, a cui sono da aggiungere anfore da trasporto, vasellame da cucina e ceramica fine per la seconda fase. Questo materiale ha fatto pensare che nel corso del tempo l’edificio abbia mantenuto sempre un forte carattere produttivo. Probabilmente all’inizio doveva essere la residenza di un ricco proprietario terriero, mentre successivamente fu trasformato in una villa rustica, ossia una dimora situata in campagna dove le risorse del territorio venivano processate.\r\nUn'iscrizione in greco sul lato esterno della torre porta a pensare che il sito sia stato occupato anche successivamente in età bizantina.",
                 "ITCaption": null,
-                "Bibliography": null,
-                "Field": null
+                "ThreeD": null
             }
         }, {
             "type": "Feature",
@@ -148,8 +143,7 @@ var contextualSites = {
                 "ITDate": "3 ° secolo aC",
                 "ITDescriptio": "Il sito di Dobër si trova su una bassa altura nella valle della Pavla, presso il villaggio di Vagalat, alle pendici della catena di Mali Mile, a circa 20 km da Phoinike e 10 km da Butrinto. Il sito si articola in due settori distinti: una zona più bassa ad est, dove Ugolini rinvenne nel 1929 una struttura in opera quadrata, e una a monte con resti riferibili a una “villa fortificata” scavata dall’archeologo D. Condi negli anni ’80.\r\nLa struttura a valle si presenta come un muro lineare, conservato per una lunghezza di circa 15,70 m e per un’altezza massima di quattro filari (1,90 m) di cui quello inferiore sporge a formare un gradino. Si tratta probabilmente di parte di un muro di terrazzamento o della facciata di un edificio ed è databile al III secolo a.C., sulla base della tecnica simile a quella del cosiddetto “Thesauròs” di Phoinike e al tempio dell’Asklepieion di Butrinto. Dalle immediate vicinanze della struttura, sebbene non sia noto il punto preciso, provengono alcune statue la cui fattura e grandezza maggiore al vero hanno portato a riconoscere qui i resti di un santuario di età ellenistica, forse dedicato a Demetra e Artemide oppure alla Magna Mater. Si tratta di due torsi, databili stilisticamente alla seconda metà del II secolo a.C. e trasferiti dall’archeologo D. Budina nel Museo Archeologico di Butrinto, e di un raffinato ritratto femminile, forse di poco più antico (III secolo a.C.). Purtroppo è ignota la relazione tra la struttura e le statue rinvenute.\r\nSul punto più alto della collina, invece, si distinguono, seppure poco conservati, una torre centrale (4,30 x 3,90 m) con muro di recinzione e una serie di ambienti, databili al III-II secolo a.C. Questi sono poi oggetto di una ristrutturazione in età romana con la creazione di nuovi ambienti. Sul lato sud-est del cortile, tra VII e X secolo d.C., si imposta una chiesa dalle pianta quadrangolare di 4,80 x 3,30 m. ",
                 "ITCaption": null,
-                "Bibliography": null,
-                "Field": null
+                "ThreeD": null
             }
         }, {
             "type": "Feature",
@@ -173,7 +167,7 @@ var contextualSites = {
                 "ITDate": "3 ° secolo aC",
                 "ITDescriptio": "Il sito di Çukë e Sarandës si trova sull’estremità meridionale della bassa dorsale costiera dominata dal monastero di Santi Quaranta e dal castello di Lëkurësi.\r\n\r\nLe rovine sorgono nel moderno villaggio di Çukë, a meno di 1 km dal vicino sito di Çumporë, e consistono in una torre a pianta rettangolare (12 x 8 m ca.). Sappiamo dall’archeologo albanese Dh. Budina che fino agli anni ’60 del secolo scorso la torre si conservava per un’altezza di 4m (oggi solo 1.20m) e che nelle vicinanze erano visibili parti di muri, forse da connettere a un muro di recinzione. Nel 1922 sulle pendici nord-orientali vennero scoperte anche due tombe a cassa litica con lastre di pietra, messe in relazione con l’insediamento.\r\nIn mancanza di scavi archeologici non si conosce la datazione dell’edificio, tuttavia le analogie con i siti di Çumporë e Metoq fanno pensare a una sua costruzione in età ellenistica.\r\n",
                 "ITCaption": null,
-                "Bibliography": null, "Field": null
+                "ThreeD": null
             }
         }, {
             "type": "Feature",
@@ -197,8 +191,7 @@ var contextualSites = {
                 "ITDate": "3 ° secolo aC",
                 "ITDescriptio": "L’area di Matomara si trova a nord-est della collina di Phoinike, nelle vicinanze del moderno villaggio di Mesopotam su un basso ripiano terrazzato quasi in pianura. Qui sono stati rinvenuti alcuni raggruppamenti di materiali e resti di strutture riferibili a residenze di età ellenistica e romana, connesse allo sfruttamento delle campagne. Uno di essi è stato oggetto di scavi della Missione Italo-Albanese a Phoinike tra il 2007 e il 2008: si tratta di un recinto quadrangolare che racchiude un’area di circa 40 x 32 m, in gran parte priva di strutture e divisa in due terrazze. Nel settore più occidentale è stata ricavata un’area residenziale articolata in tre vani rettangolari databili alla piena età ellenistica (III-II secolo a.C.), sebbene vi siano reperti ceramici che testimoniano una frequentazione più antica, intorno al V secolo a.C. Una seconda fase di ristrutturazione dell’edificio è datata tra II e I secolo a.C. in cui vengono usati blocchi di forma irregolare e la divisione in vani non è sempre chiara. Dopo il I a.C. il sito viene probabilmente abbandonato poiché si rivengono crolli e in età romana imperiale il sito sembra solo essere frequentato e non occupato stabilmente. Nei muri dell’edificio sono impiegati blocchi di pietra rettangolari che purtroppo si conservano solo a livello delle fondazioni o per pochi filari. Il complesso aveva sia una valenza residenziale che produttiva di ambito agro-pastorale: i numerosi pesi da telaio rinvenuti fanno pensare ad attività di lavorazione della lana, mentre i molti frammenti di pithoi erano funzionali alla conservazione dei cibi. L’ipotesi più verosimile è che si tratti di un sito del territorio di Phoinike apparentemente vicino alla tipologia delle ville fortificate (Çuka, Çumpora etc.) ma lo stato delle strutture non permette una precisa ricostruzione della pianta.",
                 "ITCaption": null,
-                "Bibliography": "",
-                "Field": null
+                "ThreeD": ""
             }
         }, {
             "type": "Feature",
@@ -222,8 +215,7 @@ var contextualSites = {
                 "ITDate": "1 ° secolo dC",
                 "ITDescriptio": "Sulla riva destra del lago di Butrinto, nella baia di Kalivo, sorge l’insediamento di Diaporit. L’area è stata prima occupata da un grande complesso di età ellenistico (III secolo a.C.), in gran parte distrutto dalla fase romana di I secolo a.C. Tra 40 e 80 d.C. avviene la costruzione di una grande villa marittima su un sistema di terrazzamenti con un grande giardino a peristilio e abside che si apriva verso il lago. Il complesso, con funzione esclusivamente residenziale e decorato con mosaici e marmi di pregio, è probabilmente appartenuta a una famiglia influente, nota anche a Butrinto e testimoniata dal ritrovamento di una tegola con bollo Graecinus. La villa viene ampliata nel II secolo d.C. e, dopo un secolo di abbandono, l’area viene nuovamente occupata nel V secolo d.C. con la costruzione di una grande basilica paleocristiana.",
                 "ITCaption": null,
-                "Bibliography": null,
-                "Field": null
+                "ThreeD": null
             }
         }, {
             "type": "Feature",
@@ -247,8 +239,7 @@ var contextualSites = {
                 "ITDate": "Età del Bronzo",
                 "ITDescriptio": "La città di Saranda prende il nome moderno dal monastero di Santi Quaranta, ma in antichità era conosciuta come Onchesmos e ricordata per essere stata l’approdo di Anchise, il padre di Enea. Si pensa che in antichità fosse il porto della vicina città di Phoinike. Molti dei resti archeologici che hanno visto i viaggiatori durante lo scorso secolo oggi sono andati perduti: W. M. Leake vide le mura, con torri su tre lati, oltre che cisterne, chiese e abitazioni oggi non più conservate. Anche Evangelidis, il primo archeologo che scava nel centro della città, vide un teatro o odeion oggi non più conservato. La prima frequentazione dell’area risale all’età del Bronzo, testimoniata da due asce ritrovate durante la costruzione della moderna biblioteca. Gli autori antichi ricordano la presenza di un tempio dedicato alla dea Afrodite all’interno della città, tuttavia non è stato possibile ritrovarlo: K. Lako rinviene solo pochi frammenti architettonici di cui non si conosce l’edificio di provenienza. Molto più numerosi, invece, sono i resti datati tra la tarda età romana e l’epoca medievale. Tra questi, i resti di una arcata parte delle strutture del porto di età romana, che oggi si trova sul lungomare di Saranda, e i resti del circuito murario difensivo di forma pentagonale, costruito tra il I e il III secolo d.C. Nella zona centrale dell’abitato è stato rinvenuto, invece, un impianto termale. Sembra che la moderna Rruga Skënderbeu ripercorra il tracciato del decumano di età romana, una delle strade principali dell’antica città. Ancora più numerosi sono i resti di età tardo antica e alto medievale: sono conservati ampi tratti delle mura, la basilica paleocristiana trasformata nel VI secolo d.C. in sinagoga, con i suoi pavimenti mosaicati a motivi animali, e un edificio con pavimento a mosaico nel Museo Archeologico di Saranda.",
                 "ITCaption": null,
-                "Bibliography": null,
-                "Field": null
+                "ThreeD": null
             }
         }, {
             "type": "Feature",
@@ -272,8 +263,7 @@ var contextualSites = {
                 "ITDate": "5 ° secolo dC",
                 "ITDescriptio": "Il monastero occupa una delle colline che sovrastano la città di Saranda. Il nome viene dagli 40 martiri cristiani uccisi a Sebastea, in Armenia (attuale Sivas in Turchia). La chiesa è una delle basiliche più grandi della regione (oltre 40 metri di lunghezza), viene costruita nella tarda antichità, poco prima del 500 d.C. e diventa presto un centro di pellegrinaggio. L’edificio originale era molto complesso e aveva una pianta insolita: era formato da 3 sale absidate sui lati, di cui l’ultima anche con abside sul fondo, e un tetto caratterizzato da numerose nicchie e finestre che illuminavano l’interno. Il complesso è dotato anche di una cripta dove sono ancora conservati i dipinti originali. Intorno alla basilica sono visibili i resti degli edifici impiegati dalla comunità monastica e dai pellegrini, come un piccolo impianto termale. Il monastero sopravvive fino alla conquista ottomana, tra il XIV e XV secolo d.C., mentre la chiesa continua a essere impiegata fino al XIX secolo d.C. L’edificio venne distrutto in seguito ai bombardamenti della Seconda Guerra Mondiale nel 1944. \r\n",
                 "ITCaption": null,
-                "Bibliography": null,
-                "Field": null
+                "ThreeD": null
             }
         }, {
             "type": "Feature",
@@ -297,8 +287,7 @@ var contextualSites = {
                 "ITDate": "19 ° secolo dC",
                 "ITDescriptio": "Il castello viene costruito da Ali Pasha di Tepelene nel XIX secolo sulla collina subito a sud rispetto alla Chiesa dei 40 martiri, presso il villaggio abbandonato di Lëkurësi Ha forma quadrangolare e due torri circolari a nord-ovest e sud-est, oltre che una torre rettangolare sulla parete occidentale. L’ingresso si trova a est. All’entrata sono ancora visibili alcuni affreschi appartenenti alla chiesa post-bizantina del castello. Dal castello si può ammirare una bellissima vista su Phoinike, Butrinto, la penisola di Ksamil e Corfù.",
                 "ITCaption": null,
-                "Bibliography": null,
-                "Field": null
+                "ThreeD": null
             }
         }, {
             "type": "Feature",
@@ -322,8 +311,7 @@ var contextualSites = {
                 "ITDate": "Preistoria",
                 "ITDescriptio": "“La città di Butrinto nasce nell’antica regione della Caonia, parte dell’Epiro settentrionale. Il sito si sviluppa sulla parte terminale della penisola di Ksamil, circondata dal lago di Butrinto e dal canale di Vivari, che separa il promontorio dalla prospiciente piana di Vrina. Il centro nasce in una posizione particolarmente favorevole, il che consente una lunga fase di occupazione, dall’età del Bronzo fino al tardo XVI secolo. Butrinto vive una delle sue fasi di maggiore crescita durante l’età ellenistica, mentre si svincola dal controllo della prospiciente isola di Corfù per diventare il centro amministrativo del koinon dei Caoni. Tra III e II secolo a.C. vede la costruzione di alcuni degli edifici più rappresentativi della città, come la costruzione del teatro e della porta di Asclepio ad ampliamento del Santuario, oltre che l’estensione del circuito murario. La deduzione come colonia romana con il nome di Augusta Buthrotum, subito dopo la battaglia di Azio, rappresenta un altro momento di particolare crescita, anche grazie all’espansione del centro abitato sulla vicina piana di Vrina tra il I secolo a.C. e il II secolo d.C. In età tardoantica Butrinto vive una nuova fase di crescita legata in particolare alla presenza cristiana, di cui sono esempio la Basilica sull’Acropoli, il Battistero e il Palazzo del Triconco. Dal VI secolo d.C. diventa una importante base militare, testimoniata anche dall’ampliamento del circuito murario tra X e XI secolo, sede della flotta Bizantina. L’ultima fase di vita vede la dominazione della Repubblica Veneziana tra XIII e XIV secolo, con il progressivo abbandono della città antica.” - Università di Bologna (https://disci.unibo.it/en/research/archaeological-missions/achaeological-missions-abroad/butrint-albania)",
                 "ITCaption": null,
-                "Bibliography": null,
-                "Field": null
+                "ThreeD": null
             }
         }
     ]
