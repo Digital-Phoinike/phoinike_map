@@ -413,7 +413,8 @@ map.on('popupopen', function (event) {
 
 map.whenReady(function () {
 
-    console.log(placesImported._layers);
+    //console.log(placesImported._layers);
+    //console.log(allSites._layers);
         //Theater
         if (hash == "0") {
             needToNotifySize = false;
