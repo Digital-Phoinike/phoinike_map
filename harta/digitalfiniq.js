@@ -124,6 +124,8 @@ var needToNotifySettings = true;
 var needToNotifySize = true;
 var currentLangPlaces;
 
+var full = new L.Control.Fullscreen();
+var pan = new L.Control.Pan();
 
 entranceMarker = new L.Marker([39.91351259783837, 20.059624328713472], { icon: infoIcon }).bindPopup(entrancePopup, { maxHeight: 200, maxWidth: 200, closeOnClick: true }).addTo(map);
 
@@ -410,51 +412,52 @@ map.on('popupopen', function (event) {
 });
 
 map.whenReady(function () {
+
+    console.log(placesImported);
         //Theater
         if (hash == "0") {
             needToNotifySize = false;
-            placesImported._layers[26].openPopup();
+            placesImported._layers[1397].openPopup();
         }
         //House of Two Peristyles
         if (hash == "1") {
             needToNotifySize = false;
-                placesImported._layers[28].openPopup();
-            }
+            placesImported._layers[1399].openPopup();
+        }
         //Baths
-
         if (hash == "2") {
             needToNotifySize = false;
-            placesImported._layers[29].openPopup();
+            placesImported._layers[1400].openPopup();
         }
         //Agora and Basilica
         if (hash == "3") {
             needToNotifySize = false;
-            placesImported._layers[30].openPopup();
+            placesImported._layers[1401].openPopup();
         }
         //House of the Frescoes
         if (hash == "4") {
             needToNotifySize = false;
-            placesImported._layers[31].openPopup();
+            placesImported._layers[1402].openPopup();
         }
         //Walls
         if (hash == "5") {
             needToNotifySize = false;
-            placesImported._layers[32].openPopup();
+            placesImported._layers[1403].openPopup();
         }
         //Necropolis
         if (hash == "6") {
             needToNotifySize = false;
-            placesImported._layers[33].openPopup();
+            placesImported._layers[1404].openPopup();
         }
         //Cistern
         if (hash == "7") {
             needToNotifySize = false;
-            placesImported._layers[34].openPopup();
+            placesImported._layers[1405].openPopup();
         }
         //Stoa
         if (hash == "8") {
             needToNotifySize = false;
-            placesImported._layers[35].openPopup();
+            placesImported._layers[1406].openPopup();
         }
         if (hash == "mobile_fs") {
             needToNotifySize = false;
@@ -506,8 +509,7 @@ function onLocationError(e) {
     }
  }
 
-var full = new L.Control.Fullscreen();
-var pan = new L.Control.Pan();
+
 
 var width = window.innerWidth;
 if (width < 650) {
