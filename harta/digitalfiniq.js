@@ -34,22 +34,19 @@ var langNumber=0;
 var numFilter=3;
 //load initial geoJson files
 var placesImported;
-/* = L.geoJson(places, {
-  onEachFeature: popUpPlaces
-});*/
 var allSites = L.geoJSON(contextualSites, {
-    onEachFeature: popUpPlaces,
-    pointToLayer: function (feature, latlng) {
-        var markerStyle = {
-            fillColor: getColor(feature.properties.Type),
-            color: "#FFF",
-            fillOpacity: 1,
-            opacity: 0.5,
-            weight: 1,
-            radius: 10
-        };
-        return L.circleMarker(latlng, markerStyle);
-    }
+    onEachFeature: popUpPlaces
+    //pointToLayer: function (feature, latlng) {
+    //    var markerStyle = {
+    //        fillColor: getColor(feature.properties.Type),
+    //        color: "#FFF",
+    //        fillOpacity: 1,
+    //        opacity: 0.5,
+    //        weight: 1,
+    //        radius: 10
+    //    };
+    //    return L.circleMarker(latlng, markerStyle);
+    //}
 }).addTo(map);
 var entranceImported = L.geoJSON(entrance, {
     onEachFeature: popUpEntrance
@@ -591,18 +588,18 @@ function sliderCreation (langNumber, numFilter) {
         };
 
     allSites = L.geoJSON(contextualSites, {
-        onEachFeature: currentLangPlaces,
-        pointToLayer: function (feature, latlng) {
-            var markerStyle = {
-                fillColor: getColor(feature.properties.Type),
-                color: "#FFF",
-                fillOpacity: 1,
-                opacity: 0.5,
-                weight: 1,
-                radius: 10
-            };
-            return L.circleMarker(latlng, markerStyle);
-        }
+        onEachFeature: currentLangPlaces
+        //pointToLayer: function (feature, latlng) {
+        //    var markerStyle = {
+        //        fillColor: getColor(feature.properties.Type),
+        //        color: "#FFF",
+        //        fillOpacity: 1,
+        //        opacity: 0.5,
+        //        weight: 1,
+        //        radius: 10
+        //    };
+        //    return L.circleMarker(latlng, markerStyle);
+        //}
     }).addTo(map);
 }
 
