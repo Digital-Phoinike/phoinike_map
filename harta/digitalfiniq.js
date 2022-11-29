@@ -22,7 +22,7 @@ var imageWidth = popUpWidth * 0.8;
 var imageHeight = imageWidth * 0.6;
 var images = [null, "image1.png", "image2.png", "image3.png", "image4.png", "image5.png", "image6.png", "image7.png", "image8.png", "image9.png",
     "image10.png", "image11.png", "image12.png", "image13.png", "image14.png", "image15.png", "image16.png", "image17.png", "image18.png", "image19.png",
-    "image20.png", "image21.png"];
+    "image20.png", "image21.png", "image22.png"];
 var currentImage = null;
 var eraSlider = document.getElementById('slider');
 var Esri_WorldImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
