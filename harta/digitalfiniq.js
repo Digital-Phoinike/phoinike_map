@@ -5,7 +5,7 @@ var mapOptions = {
     zoom: 16,
     maxZoom: 20,
     minZoom: 10,
-    maxBounds: [[39.690784799474905, 19.81299812520738], [40.098806006678494, 20.262505016975012]],
+    maxBounds: [[39.400784799474905, 19.81299812520738], [40.098806006678494, 20.262505016975012]],
     //panControl: true,
     //fullscreenControl:true,
     //fullscreenControlOptions: {position:'topleft'},
@@ -320,7 +320,7 @@ map.on('popupclose', function(e){
     
   };
     //map.fullscreenControl.addTo(map);
-    map.setMaxBounds([[39.690784799474905, 19.81299812520738], [40.098806006678494, 20.262505016975012]]);
+    map.setMaxBounds([[39.400784799474905, 19.81299812520738], [40.098806006678494, 20.262505016975012]]);
 });
 
 map.on('zoomstart', function (e) {
@@ -360,7 +360,7 @@ map.on('popupopen', function (event) {
     //map.fullscreenControl.remove();
     map.removeControl(full);
     map.removeControl(pan);
-    map.setMaxBounds([[37.17168400781412, 14.555219061565039],[44.937766393643194, 24.445555079300775]]);
+    map.setMaxBounds([[39.400784799474905, 14.555219061565039],[44.937766393643194, 24.445555079300775]]);
     var popup = event.popup;
     var marker = popup._source;
     var content = popup.getContent();
