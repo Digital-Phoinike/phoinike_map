@@ -413,51 +413,51 @@ map.on('popupopen', function (event) {
 
 map.whenReady(function () {
 
-    console.log(placesImported);
+    console.log(placesImported._layers);
         //Theater
         if (hash == "0") {
             needToNotifySize = false;
-            placesImported._layers[1397].openPopup();
+            placesImported._layers[1388].openPopup();
         }
         //House of Two Peristyles
         if (hash == "1") {
             needToNotifySize = false;
-            placesImported._layers[1399].openPopup();
+            placesImported._layers[1390].openPopup();
         }
         //Baths
         if (hash == "2") {
             needToNotifySize = false;
-            placesImported._layers[1400].openPopup();
+            placesImported._layers[1391].openPopup();
         }
         //Agora and Basilica
         if (hash == "3") {
             needToNotifySize = false;
-            placesImported._layers[1401].openPopup();
+            placesImported._layers[1392].openPopup();
         }
         //House of the Frescoes
         if (hash == "4") {
             needToNotifySize = false;
-            placesImported._layers[1402].openPopup();
+            placesImported._layers[1393].openPopup();
         }
         //Walls
         if (hash == "5") {
             needToNotifySize = false;
-            placesImported._layers[1403].openPopup();
+            placesImported._layers[1394].openPopup();
         }
         //Necropolis
         if (hash == "6") {
             needToNotifySize = false;
-            placesImported._layers[1404].openPopup();
+            placesImported._layers[1395].openPopup();
         }
         //Cistern
         if (hash == "7") {
             needToNotifySize = false;
-            placesImported._layers[1405].openPopup();
+            placesImported._layers[1396].openPopup();
         }
         //Stoa
         if (hash == "8") {
             needToNotifySize = false;
-            placesImported._layers[1406].openPopup();
+            placesImported._layers[1397].openPopup();
         }
         if (hash == "mobile_fs") {
             needToNotifySize = false;
