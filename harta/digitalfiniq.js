@@ -3,7 +3,7 @@ var mapOptions = {
     tap: false,
     center: [39.91381644734087, 20.059],
     zoom: 16,
-    maxZoom: 20,
+    maxZoom: 18,
     minZoom: 10,
     maxBounds: [[39.400784799474905, 19.81299812520738], [40.098806006678494, 20.262505016975012]],
     touchZoom: true,
@@ -654,4 +654,3 @@ function updateFiniqVisiblity() {
         map.removeLayer(placesImported);
     }
 }
-
