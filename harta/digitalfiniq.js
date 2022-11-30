@@ -111,6 +111,7 @@ var positionShown = false;
 var needToNotifyDistance = true;
 var needToNotifySettings = true;
 var needToNotifySize = true;
+var finiqInView = true;
 var currentLangPlaces;
 var full = new L.Control.Fullscreen();
 var pan = new L.Control.Pan();
@@ -149,9 +150,6 @@ function changeLanguage(lang) {
             "Satellite Imagery": Esri_WorldImagery,
             "Street Map": openStreetMap
         };
-
-
-
     }
     if (lang == "al") {
       langNumber=1;
@@ -186,14 +184,12 @@ function changeLanguage(lang) {
     eraSlider.noUiSlider.on('change', function (values, handle) {
         sliderMovement(values, handle);
     });
-    //disable panning while moving slider
+    //disable panning while moving slider, has to be called again
     slider.noUiSlider.on('start', function (e) {
-        console.log("sliding started");
-      map.dragging.disable();
+        map.dragging.disable();
     });
     slider.noUiSlider.on('end', function (e) {
-        console.log("sliding stopped");
-    map.dragging.enable();
+        map.dragging.enable();
     })
 }
 
@@ -603,22 +599,59 @@ function getFilterNumber(filter) {
 
 //disable panning while moving slider
 slider.noUiSlider.on('start', function (e) {
-    console.log("sliding started");
   map.dragging.disable();
 });
 slider.noUiSlider.on('end', function (e) {
-    console.log("sliding stopped");
 map.dragging.enable();
 })
 
-//Disable Slider when zoomed out and remove Phoenike individual locations
-map.on('zoomend', function() {
-    if (map.getZoom() > 14) {
-    document.getElementById("sliderunderlay").style.zIndex = "800"; //put slider back
-    map.addLayer(placesImported);
-        }
-else {
-    document.getElementById("sliderunderlay").style.zIndex = "-1";//destroy slider
-    map.removeLayer(placesImported);
-}
+//check if Finiq is visible. If not, remove slider and Finiq sites.
+map.on('zoomend', function () {
+    updateFiniqVisiblity()
 });
+
+map.on('moveend', function (e) {
+    if (map.getBounds().contains(L.latLng(39.9132706, 20.0564641))) {
+        finiqInView = true;
+    }
+    else if (map.getBounds().contains(L.latLng(39.9155927, 20.0549549))) {
+        finiqInView = true;
+    }
+    else if (map.getBounds().contains(L.latLng(39.913201642594451, 20.057805693451179))) {
+        finiqInView = true;
+    }
+    else if (map.getBounds().contains(L.latLng(39.913161287253679, 20.058684086265522))) {
+        finiqInView = true;
+    }
+    else if (map.getBounds().contains(L.latLng(39.91708973280484, 20.052877120043348))) {
+        finiqInView = true;
+    }
+    else if (map.getBounds().contains(L.latLng(39.911238084816446, 20.061125409623443))) {
+        finiqInView = true;
+    }
+    else if (map.getBounds().contains(L.latLng(39.90908238200553, 20.050942322439486))) {
+        finiqInView = true;
+    }
+    else if (map.getBounds().contains(L.latLng(39.912819101636735, 20.059068204674599))) {
+        finiqInView = true;
+    }
+    else if (map.getBounds().contains(L.latLng(39.911644067953603, 20.060832478444699))) {
+        finiqInView = true;
+    }
+    else {
+        finiqInView = false;
+    }
+    updateFiniqVisiblity();
+});
+
+function updateFiniqVisiblity() {
+    if (map.getZoom() > 14 && finiqInView) {
+        document.getElementById("sliderunderlay").style.zIndex = "800"; //put slider back
+        map.addLayer(placesImported);
+    }
+    else {
+        document.getElementById("sliderunderlay").style.zIndex = "-1";//destroy slider
+        map.removeLayer(placesImported);
+    }
+}
+
