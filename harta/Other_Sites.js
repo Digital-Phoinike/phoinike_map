@@ -96,7 +96,7 @@ var contextualSites = {
             "properties":
             {
                 "OBJECTID": 5,
-                "Name": "Metoq villa",
+                "Name": "Metoq",
                 "ALName": "Metoq",
                 "ALDate": "shekulli i 3 p.e.s.",
                 "ALDescriptio": "Ferma e fortifikuar e Metoqit ndodhet në kodrat e ulëta në lindje të Qafë Gjashtës, mbi fushën e Vurgut, që e ndan nga qyteti antik i Foinikes, në anën tjetër të luginës.\r\nPranë kishës së Shën Gjergjit gjenden mbetjet e një ndërtese me kullë qendrore dhe mur rrethues. Duket se një sërë dhomash mbështeteshin pas këtij muri nga brenda, në anën lindore, veriore dhe perëndimore; aktualisht ato nuk janë më të dukshme. Është ruajtur më mirë kulla qendrore me planimetri katrore, me një korridor aksesi dhe dy dhoma. Gërmimet e arkeologëve shqiptarë në fundin e viteve 80 dhe fillimin e viteve 90 identifikuan dy faza: e para, ndërtimi i objektit, në periudhën helenistike (shek. III/II p.e.s.) dhe e dyta në periudhën romake (shek. I-IV e.s), kur u ristrukturua. Në lidhje me fazën e parë u evidentuan fragmente enësh të mëdha (pitosa), ndërsa në lidhje me fazën e dytë u evidentuan amfora transportuese, qeramikë e enëve të kuzhinës dhe qeramika fine. Ky material sugjeron se me kalimin e kohës ndërtesa ka ruajtur gjithmonë një karakter të fortë prodhues. Në fillim ndoshta mund të ishte rezidenca e një pronari të pasur tokash, ndërsa më vonë u shndërrua në një villa rustica, pra një shtëpi e vendosur në fshat ku përpunoheshin burimet e territorit.\r\nNjë mbishkrim në greqisht në anën e jashtme të kullës sugjeron se vendi ka qenë banuar edhe më vonë, gjatë periudhës bizantine.\r\n",
@@ -228,7 +228,7 @@ var contextualSites = {
             "properties":
             {
                 "OBJECTID": 11,
-                "Name": "Monastery of 40 Saints",
+                "Name": "Monastery of the 40 Saints",
                 "ALName": "Manastiri i 40 Shenjtorëve",
                 "ALDate": "shekulli 5 e.s.",
                 "ALDescriptio": "Manastiri ndodhet në një nga kodrat mbi qytetin e Sarandës. Emri vjen nga 40 martirët e krishterë të vrarë në Sebastea, Armeni (tani Sivas në Turqi). Kisha është një nga bazilikat më të mëdha në rajon (mbi 40 metra e gjatë); ajo u ndërtua në antikitetin e vonë, pak para vitit 500 e.s., dhe shpejtë kthehet në qendër pelegrinazhi. Ndërtesa origjinale ishte shumë komplekse dhe kishte një planimetri të pazakontë: ajo përbëhej nga 3 ambiente me absida anash, e fundit prej të cilave kishte gjithashtu një absidë në anën fundore, dhe një çati të karakterizuar nga kamare dhe dritare të shumta që ndriçonin ambientet e brendshme. Kompleksi ka edhe një kriptë ku ruhen ende pikturat origjinale. Rreth bazilikës duken rrënojat e ndërtesave të përdorura nga komuniteti i murgjve dhe pelegrinët, si për shembull një termë e vogël. Manastiri mbijeton deri në pushtimin osman, midis shekujve 14 dhe 15 e.s., ndërsa kisha vazhdon të përdoret deri në shekullin e 19. Ndërtesa u shkatërrua pas bombardimeve të Luftës së Dytë Botërore në 1944.",
