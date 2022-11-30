@@ -27,10 +27,10 @@ var openStreetMap = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.
                     maxNativeZoom:17
 });
 //initial language set to English and Roman Period for filtering
-var langNumber=0; //1 = Albanian, 2 = Italian 
-var numFilter=3; //tracks the slider setting 
+var langNumber=0; //1 = Albanian, 2 = Italian
+var numFilter=3; //tracks the slider setting
 //load initial geoJson files
-var placesImported; //gets instantiated further down by slider 
+var placesImported; //gets instantiated further down by slider
 var allSites = L.geoJSON(contextualSites, {
     onEachFeature: popUpPlaces
 }).addTo(map);
@@ -69,21 +69,21 @@ var streetsImported = L.geoJSON(streets, {
     });
 var infoIcon = L.icon({
     iconUrl: 'info.png',
-    iconSize: [100, 75], 
+    iconSize: [100, 75],
     iconAnchor: [50, 100], // point of the icon which will correspond to marker's location
     popupAnchor: [0, -25] // point from which the popup should open relative to the iconAnchor
     });
 var infoIconAl = L.icon({
     iconUrl: 'infoAL.png',
-    iconSize: [100, 75], 
-    iconAnchor: [50, 100], 
-    popupAnchor: [0, -25] 
+    iconSize: [100, 75],
+    iconAnchor: [50, 100],
+    popupAnchor: [0, -25]
 });
 var infoIconIT = L.icon({
     iconUrl: 'infoIT.png',
     iconSize: [100, 75], // size of the icon
-    iconAnchor: [50, 100], 
-    popupAnchor: [0, -25] 
+    iconAnchor: [50, 100],
+    popupAnchor: [0, -25]
 });
 var entrancePopup = "<center><b>Ancient Phoenike</b></center><br>The settlement of ancient Phoenike was one of the largest communities in the region of Epirus during the Hellenistic period and was the capital of Chaonia, one of the fourteen Epirote tribal regions. While evidence from the 5th and 4th centuries BCE point to the settlement’s earliest origins, its true urban development dates primarily to its Hellenistic phase in the 3rd century BCE, culminating in the city emerging as the capital of the Epirote League. During the Third Macedonian War, the region of Chaonia supported the Roman Republic, resulting in Phoenike being spared from Roman destruction when the war ended in 168 BCE. As a Roman community, Phoenike lasted for several centuries and experienced an important phase under the Byzantine Emperor Justinian during the 6th century CE. During this period, Phoenike became a vescoval see and featured a variety of early Christian religious buildings.<br><br>First excavated by Luigi Maria Ugolini in the 1920s, later by Albanian archaeologists, and more recently by an Albanian-Italian collaboration between the Institute of Archaeology and University of Bologna, the history of Phoenike continues to be written as archaeologists peel back its layers year-by-year. This interactive map tells the story of the most important archaeological discoveries over the past century, including grand public buildings, monumental defensive structures, fascinating private residences, and a multilayered burial ground which served as the final resting place for centuries of generations of the settlement’s inhabitants. Within the map, occasional links to 3D content help bring this story to life and illustrate the reconstructions imagined by archaeologists who have excavated and studied this site. <br><br>Enjoy your exploration of ancient Phoenike!<br><br><i>Designed and created by <b>Sabian Hasani, Matthew Naglak, and Tyler Duane Johnson</b> with the support of the <b>Albanian Ministry of Culture</b> and the <b>Albanian-Italian Archaeological Mission at Phoenike</b></i><br><br>";
 entranceMarker = new L.Marker([39.91351259783837, 20.059624328713472], { icon: infoIcon }).bindPopup(entrancePopup, {
@@ -118,12 +118,12 @@ var pan = new L.Control.Pan();
 sliderCreation(langNumber, numFilter); //calls function to create initial slider, and this instantiates the placesImported layer for the first time
 
 eraSlider.noUiSlider.on('change', function (values, handle) {
-  sliderMovement(values, handle); 
+  sliderMovement(values, handle);
 });
 
 function changeLanguage(lang) {
     //get rid of stuff that needs reloaded in new language
-    eraSlider.noUiSlider.destroy(); 
+    eraSlider.noUiSlider.destroy();
     controls.remove();
     map.removeLayer(placesImported);
     map.removeLayer(allSites);
@@ -149,6 +149,9 @@ function changeLanguage(lang) {
             "Satellite Imagery": Esri_WorldImagery,
             "Street Map": openStreetMap
         };
+
+
+
     }
     if (lang == "al") {
       langNumber=1;
@@ -179,9 +182,19 @@ function changeLanguage(lang) {
     //reload the items destroyed at beginning of function
     controls = L.control.layers(baseLayers, clusterLayers).addTo(map);
     sliderCreation(langNumber, numFilter);
+
     eraSlider.noUiSlider.on('change', function (values, handle) {
         sliderMovement(values, handle);
     });
+    //disable panning while moving slider
+    slider.noUiSlider.on('start', function (e) {
+        console.log("sliding started");
+      map.dragging.disable();
+    });
+    slider.noUiSlider.on('end', function (e) {
+        console.log("sliding stopped");
+    map.dragging.enable();
+    })
 }
 
 //if position is loaded, the tooltip of the circle showing user's position needs reloaded
@@ -199,7 +212,7 @@ function updateLocationLanguage(lang) {
     }
 }
 
-//called when slider gets moved 
+//called when slider gets moved
 function sliderMovement(values, handle) {
     map.removeLayer(placesImported);
     map.removeLayer(buildingsImported);
@@ -372,7 +385,7 @@ map.on('popupopen', function (event) {
         var imageHTML = '<center><br><img src ="' + imageUpdate + '" width ="' + imageWidth + '" height ="' + imageHeight + '" border = 2px solid white> <br>' + captionUpdate + '</center>'
         marker._popup.setContent(originalContent + imageHTML);
     }
-    //same thing but for the Finiq entrance markers 
+    //same thing but for the Finiq entrance markers
     if (marker == entranceMarker || marker == entranceMarkerAL || marker == entranceMarkerIT) {
         var logoUpdate = "<center><img src = ministry_logo.png height ='" + logoHeight + "'width ='" + logoWidth + "' border = 2px solid white></center>"
         if (langNumber == 0) {
@@ -441,7 +454,7 @@ map.whenReady(function () {
         if (hash == "mobile_fs") {
             needToNotifySize = false;
             //so that if a mobile user gets sent to the fullscreen map from the main page,
-            //they don't see the "view map in fullscreen" message 
+            //they don't see the "view map in fullscreen" message
         }
 });
 
@@ -554,7 +567,7 @@ function sliderCreation (langNumber, numFilter) {
                 return (feature.properties.timelineNumber <= numFilter);
             },
     });
-    //add Finiq monuments if zoomed in, also instantiates the placesImported layer for the first time 
+    //add Finiq monuments if zoomed in, also instantiates the placesImported layer for the first time
     if (map.getZoom() >14){
         placesImported.addTo(map);
         };
@@ -588,7 +601,7 @@ function getFilterNumber(filter) {
     }
 }
 
-//disable panning while moving slider 
+//disable panning while moving slider
 slider.noUiSlider.on('start', function (e) {
     console.log("sliding started");
   map.dragging.disable();
@@ -605,7 +618,7 @@ map.on('zoomend', function() {
     map.addLayer(placesImported);
         }
 else {
-    document.getElementById("sliderunderlay").style.zIndex = "-1";//destroy slider 
+    document.getElementById("sliderunderlay").style.zIndex = "-1";//destroy slider
     map.removeLayer(placesImported);
 }
 });
