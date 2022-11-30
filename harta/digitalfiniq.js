@@ -6,14 +6,10 @@ var mapOptions = {
     maxZoom: 20,
     minZoom: 10,
     maxBounds: [[39.400784799474905, 19.81299812520738], [40.098806006678494, 20.262505016975012]],
-    //panControl: true,
-    //fullscreenControl:true,
-    //fullscreenControlOptions: {position:'topleft'},
     touchZoom: true,
     attributionControl: false
  }
 var map = new L.map('map', mapOptions);
-
 var mapWidth = map.getSize().x;
 var mapHeight = map.getSize().y;
 var popUpWidth = mapWidth * 0.8;
@@ -30,25 +26,13 @@ var Esri_WorldImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest
 var openStreetMap = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                     maxNativeZoom:17
 });
-
 //initial language set to English and Roman Period for filtering
-var langNumber=0;
-var numFilter=3;
+var langNumber=0; //1 = Albanian, 2 = Italian 
+var numFilter=3; //tracks the slider setting 
 //load initial geoJson files
-var placesImported;
+var placesImported; //gets instantiated further down by slider 
 var allSites = L.geoJSON(contextualSites, {
     onEachFeature: popUpPlaces
-    //pointToLayer: function (feature, latlng) {
-    //    var markerStyle = {
-    //        fillColor: getColor(feature.properties.Type),
-    //        color: "#FFF",
-    //        fillOpacity: 1,
-    //        opacity: 0.5,
-    //        weight: 1,
-    //        radius: 10
-    //    };
-    //    return L.circleMarker(latlng, markerStyle);
-    //}
 }).addTo(map);
 var entranceImported = L.geoJSON(entrance, {
     onEachFeature: popUpEntrance
@@ -85,23 +69,28 @@ var streetsImported = L.geoJSON(streets, {
     });
 var infoIcon = L.icon({
     iconUrl: 'info.png',
-    iconSize: [100, 75], // size of the icon
+    iconSize: [100, 75], 
     iconAnchor: [50, 100], // point of the icon which will correspond to marker's location
     popupAnchor: [0, -25] // point from which the popup should open relative to the iconAnchor
     });
 var infoIconAl = L.icon({
     iconUrl: 'infoAL.png',
-    iconSize: [100, 75], // size of the icon
-    iconAnchor: [50, 100], // point of the icon which will correspond to marker's location
-    popupAnchor: [0, -25] // point from which the popup should open relative to the iconAnchor
+    iconSize: [100, 75], 
+    iconAnchor: [50, 100], 
+    popupAnchor: [0, -25] 
 });
 var infoIconIT = L.icon({
     iconUrl: 'infoIT.png',
     iconSize: [100, 75], // size of the icon
-    iconAnchor: [50, 100], // point of the icon which will correspond to marker's location
-    popupAnchor: [0, -25] // point from which the popup should open relative to the iconAnchor
+    iconAnchor: [50, 100], 
+    popupAnchor: [0, -25] 
 });
 var entrancePopup = "<center><b>Ancient Phoenike</b></center><br>The settlement of ancient Phoenike was one of the largest communities in the region of Epirus during the Hellenistic period and was the capital of Chaonia, one of the fourteen Epirote tribal regions. While evidence from the 5th and 4th centuries BCE point to the settlement’s earliest origins, its true urban development dates primarily to its Hellenistic phase in the 3rd century BCE, culminating in the city emerging as the capital of the Epirote League. During the Third Macedonian War, the region of Chaonia supported the Roman Republic, resulting in Phoenike being spared from Roman destruction when the war ended in 168 BCE. As a Roman community, Phoenike lasted for several centuries and experienced an important phase under the Byzantine Emperor Justinian during the 6th century CE. During this period, Phoenike became a vescoval see and featured a variety of early Christian religious buildings.<br><br>First excavated by Luigi Maria Ugolini in the 1920s, later by Albanian archaeologists, and more recently by an Albanian-Italian collaboration between the Institute of Archaeology and University of Bologna, the history of Phoenike continues to be written as archaeologists peel back its layers year-by-year. This interactive map tells the story of the most important archaeological discoveries over the past century, including grand public buildings, monumental defensive structures, fascinating private residences, and a multilayered burial ground which served as the final resting place for centuries of generations of the settlement’s inhabitants. Within the map, occasional links to 3D content help bring this story to life and illustrate the reconstructions imagined by archaeologists who have excavated and studied this site. <br><br>Enjoy your exploration of ancient Phoenike!<br><br><i>Designed and created by <b>Sabian Hasani, Matthew Naglak, and Tyler Duane Johnson</b> with the support of the <b>Albanian Ministry of Culture</b> and the <b>Albanian-Italian Archaeological Mission at Phoenike</b></i><br><br>";
+entranceMarker = new L.Marker([39.91351259783837, 20.059624328713472], { icon: infoIcon }).bindPopup(entrancePopup, {
+    maxHeight: 200,
+    maxWidth: 200,
+    closeOnClick: true
+}).addTo(map);
 var entrancePopupAL = "<center><b>Foinike E Lashtë</b></center><br>Vendbanimi i Foinikes së lashtë ishte një nga qendrat më të mëdha në rajonin e Epirit gjatë periudhës helenistike, njëherazi edhe kryeqendër e Kaonisë, një nga katërmbëdhjetë rajonet fisnore epirote. Ndërkohë që të dhënat që vijnë nga shek. 5 dhe 4 p.e.s dëshmojnë për origjinën më të hershme të vendbanimit, zhvillimi i vërtetë urban i tij daton kryesisht në periudhën helenistike, në shek. 3 p.e.s, periudhë gjatë të cilës qyteti arrin kulmin si kryeqendër e Ligës Epirote. Gjatë Luftës së Tretë Maqedonase, rajoni i Kaonisë përkrahu Republikën Romake, fakt ky që e shpëtoi Foiniken nga raprezaljet romake në përfundim të luftës në vitin 168 p.e.s. Si një komunitet romak, Foinike vijoi jetën për disa shekuj duke përjetuar një fazë të rëndësishme nën perandorin bizantin Justinian, gjatë shekullit të 6 -të e.s. Gjatë kësaj periudhe, Foinike u bë një qendër episkopale, e pajisur me një sërë ndërtesash religjioze, që datohen në periudhën e kristianizmit të hershëm.<br><br>Gërmimet e para kanë nisur në vitet 1920 nga Luigi Maria Ugolini, më pas nga arkeologë shqiptarë dhe së fundmi nga projekti i përbashkët shqiptaro-italian, bashkëpunim midis Institutit të Arkeologjisë (ASA) dhe Universiteti i Bolonjës. Historia e Foinikes antike vijon të shkruhet ndërsa arkeologët nxjerrin në dritë shtresëzimet e ndryshme vit pas viti. Kjo hartë interaktive tregon historinë e zbulimeve më të rëndësishme arkeologjike të shekullit të kaluar, përfshirë ndërtesat e mëdha publike, strukturat monumentale mbrojtëse, rezidencat magjepsëse të banimit dhe një varrezë me disa faza, e cila për shekuj ka shërbyer si vëndbanimi i fundit për banorët e Foinikes antike. Në brëndësinë e saj harta përmban disa materiale 3D, të cilat ndihmojnë në paraqitjen e kësaj historie dhe ilustrojnë rindërtimet e ideuara nga arkeologët që kanë e gërmuar dhe studiuar këtë qendër të rëndësishme arkeologjike.<br><br><i>Projektuar dhe krijuar nga <b>Sabian Hasani, Matthew Naglak, dhe Tyler Duane Johnson</b> me mbështetjen e <b>Ministrisë Shqiptare të Kulturës</b> dhe <b>Misionit Arkeologjik Shqiptaro-Italian në Foinike</b></i><br><br>";
 var entranceMarkerAL;
 var entrancePopupIT = "Some italian text";
@@ -123,23 +112,18 @@ var needToNotifyDistance = true;
 var needToNotifySettings = true;
 var needToNotifySize = true;
 var currentLangPlaces;
-
 var full = new L.Control.Fullscreen();
 var pan = new L.Control.Pan();
 
-entranceMarker = new L.Marker([39.91351259783837, 20.059624328713472], { icon: infoIcon }).bindPopup(entrancePopup, { maxHeight: 200, maxWidth: 200, closeOnClick: true }).addTo(map);
-
-//fuction creates initial slider; functions located at end of code
-sliderCreation(langNumber, numFilter);
+sliderCreation(langNumber, numFilter); //calls function to create initial slider, and this instantiates the placesImported layer for the first time
 
 eraSlider.noUiSlider.on('change', function (values, handle) {
-  sliderMovement(values, handle);
+  sliderMovement(values, handle); 
 });
 
-//Could be used to create pop up box for contextual sites
-
 function changeLanguage(lang) {
-    eraSlider.noUiSlider.destroy();
+    //get rid of stuff that needs reloaded in new language
+    eraSlider.noUiSlider.destroy(); 
     controls.remove();
     map.removeLayer(placesImported);
     map.removeLayer(allSites);
@@ -152,14 +136,13 @@ function changeLanguage(lang) {
     else if (langNumber == 2) {
         map.removeLayer(entranceMarkerIT);
     }
-
+    //check the language
     if (lang == "en") {
       langNumber=0;
       entranceMarker = new L.Marker([39.91351259783837, 20.059624328713472], { icon: infoIcon }).bindPopup(entrancePopup, { maxHeight: 200, maxWidth: 200, closeOnClick: true }).addTo(map);
       clusterLayers = {
             "Walking Path": pathsImported,
             "Ancient Walls": wallsImported,
-            //"Ancient Buildings": buildingsImported,
             "Ancient Streets": streetsImported
         };
         baseLayers = {
@@ -173,7 +156,6 @@ function changeLanguage(lang) {
         clusterLayers = {
             "Rrugë Këmbësore": pathsImported,
             "Muret e Lashta": wallsImported,
-            //"Godinat e Lashta": buildingsImported,
             "Rrugët e Lashta": streetsImported
         };
         baseLayers = {
@@ -187,7 +169,6 @@ function changeLanguage(lang) {
         clusterLayers = {
             "Sentiero": pathsImported,
             "Cinta muraria": wallsImported,
-            //"Godinat e Lashta": buildingsImported,
             "Antiche strade": streetsImported
         };
         baseLayers = {
@@ -195,6 +176,7 @@ function changeLanguage(lang) {
             "Mappa stradale": openStreetMap
         };
     }
+    //reload the items destroyed at beginning of function
     controls = L.control.layers(baseLayers, clusterLayers).addTo(map);
     sliderCreation(langNumber, numFilter);
     eraSlider.noUiSlider.on('change', function (values, handle) {
@@ -202,6 +184,7 @@ function changeLanguage(lang) {
     });
 }
 
+//if position is loaded, the tooltip of the circle showing user's position needs reloaded
 function updateLocationLanguage(lang) {
     if (positionShown == true) {
         if (langNumber == 0) {
@@ -216,12 +199,12 @@ function updateLocationLanguage(lang) {
     }
 }
 
+//called when slider gets moved 
 function sliderMovement(values, handle) {
     map.removeLayer(placesImported);
     map.removeLayer(buildingsImported);
     //convert filters to numbers by language then rebuild places + popups; functions at bottom of code
     numFilter = getFilterNumber(values[handle]);
-
     placesImported = new L.geoJson(places, {
         onEachFeature: currentLangPlaces,
         filter:
@@ -231,7 +214,6 @@ function sliderMovement(values, handle) {
         },
     }).addTo(map);
   //filter buildings based on timelineNumber
-
   buildingsImported = new L.geoJSON(buildings, {
     style: {
         weight: 1,
@@ -246,6 +228,7 @@ function sliderMovement(values, handle) {
   }).addTo(map);
 }
 
+//main popups for each language
 function popUpPlaces(f, l) {
     l.bindTooltip(f.properties.Name);
     var out = [];
@@ -290,13 +273,14 @@ function popUpPlacesIT(f, l) {
         out.push('<b><u>' + f.properties.ITName + '</u></b>');
         out.push('<br><b>Datazione: </b>' + f.properties.ITDate);
         if (f.properties.ThreeD) {
-            out.push('<br><b>Modelli 3D: </b>' + '<a href="' + f.properties.ThreeD + '"target="_blank">Hape në një faqe tjetër</a>');
+            out.push('<br><b>Modelli 3D: </b>' + '<a href="' + f.properties.ThreeD + '"target="_blank">Aprire in una nuova scheda</a>');
         }
         out.push('<br><b>Informazione: </b>' + f.properties.ITDescriptio + '<br><center>');
         l.bindPopup(out.join("<br/>"), { maxHeight: popUpHeight, maxWidth: popUpWidth, closeOnClick: true });
     }
 }
 
+//for the Finiq entrance marker
 function popUpEntrance(f, l) {
     var out = [];
     if (f.properties) {
@@ -313,15 +297,11 @@ map.on('popupclose', function(e){
     map.boxZoom.enable();
     map.keyboard.enable();
     map.zoomControl.addTo(map);
-    //map.panControl.addTo(map);
-
+    //check if user is likely on mobile
     if (mapWidth > 650) {
-
     map.addControl(pan);
     map.addControl(full);
-    
   };
-    //map.fullscreenControl.addTo(map);
     map.setMaxBounds([[39.400784799474905, 19.81299812520738], [40.098806006678494, 20.262505016975012]]);
 });
 
@@ -339,7 +319,6 @@ map.on('movestart', function (e) {
 
 map.on('resize', function(e){
     map.closePopup();
-
     resized = true;
     if (positionShown == true) {
         current_position.closeTooltip();
@@ -358,8 +337,6 @@ map.on('popupopen', function (event) {
     map.boxZoom.disable();
     map.keyboard.disable();
     map.zoomControl.remove();
-    //map.panControl.remove();
-    //map.fullscreenControl.remove();
     map.removeControl(full);
     map.removeControl(pan);
     map.setMaxBounds([[39.400784799474905, 14.555219061565039],[44.937766393643194, 24.445555079300775]]);
@@ -379,7 +356,7 @@ map.on('popupopen', function (event) {
     popup.options.maxWidth = popUpWidth;
     popup.options.maxHeight = popUpHeight;
     popup.update();
-
+    //improvised way to make sure the images on the main pop ups are resizing based on the resized screen
     if (marker != entranceMarker && marker != entranceMarkerAL && marker != entranceMarkerIT) {
         var imageUpdate = images[marker.feature.properties.image];
         var captionUpdate;
@@ -392,11 +369,10 @@ map.on('popupopen', function (event) {
         else if (langNumber == 2) {
             captionUpdate = marker.feature.properties.ITCaption;
         }
-
         var imageHTML = '<center><br><img src ="' + imageUpdate + '" width ="' + imageWidth + '" height ="' + imageHeight + '" border = 2px solid white> <br>' + captionUpdate + '</center>'
         marker._popup.setContent(originalContent + imageHTML);
     }
-
+    //same thing but for the Finiq entrance markers 
     if (marker == entranceMarker || marker == entranceMarkerAL || marker == entranceMarkerIT) {
         var logoUpdate = "<center><img src = ministry_logo.png height ='" + logoHeight + "'width ='" + logoWidth + "' border = 2px solid white></center>"
         if (langNumber == 0) {
@@ -411,8 +387,10 @@ map.on('popupopen', function (event) {
     }
 });
 
+//use anchor tags (added to qr code links) to open specific popups. As of 11/29/22, this was working, but some browsers
+//were not responding to anchor tags if the map was already loaded
 map.whenReady(function () {
-
+    //print these to the console to see the _layer number of each item in the layer
     //console.log(placesImported._layers);
     //console.log(allSites._layers);
         //Theater
@@ -462,6 +440,8 @@ map.whenReady(function () {
         }
         if (hash == "mobile_fs") {
             needToNotifySize = false;
+            //so that if a mobile user gets sent to the fullscreen map from the main page,
+            //they don't see the "view map in fullscreen" message 
         }
 });
 
@@ -503,15 +483,13 @@ function onLocationFound(e) {
 }
 
 function onLocationError(e) {
-
     if (needToNotifySettings == true) {
         alert("If you would like to see your live position on the map, please update your device's settings to allow location services and refresh the page.");
         needToNotifySettings = false;
     }
  }
 
-
-
+//check if user is probably on mobile
 var width = window.innerWidth;
 if (width < 650) {
     if (needToNotifySize) {
@@ -522,20 +500,16 @@ if (width < 650) {
         welcomeDialog.setSize([210, 135]);
         welcomeDialog.setLocation([100, 50]);
     }
-
 map.locate({ setView: false, watch: true });
 map.on('locationfound', onLocationFound);
 map.on('locationerror', onLocationError);
 map.removeControl(full);
 };
-
+//if not on mobile...
 if (width > 650) {
   map.addControl(pan);
   map.addControl(full);
- 
 }
-
-
 
 function sliderCreation (langNumber, numFilter) {
   noUiSlider.create(eraSlider, {
@@ -546,16 +520,9 @@ function sliderCreation (langNumber, numFilter) {
         'max': [3]
     },
     tooltips:true,
-    //removed for now because they were causing too many problems
-    //pips: {
-    //    mode: 'count',
-    //    values: 4,
-    //    density: 25
-    //  },
     format: {
       to: function(value) {
       // Math.round and -1, so 1.00 => 0, 2.00 => 2, etc.
-
       if (langNumber==0) {
         return ['4th century BCE', '3rd century BCE', '2nd century BCE', 'Roman Period'][Math.round(value)];
       }
@@ -587,29 +554,16 @@ function sliderCreation (langNumber, numFilter) {
                 return (feature.properties.timelineNumber <= numFilter);
             },
     });
-
+    //add Finiq monuments if zoomed in, also instantiates the placesImported layer for the first time 
     if (map.getZoom() >14){
         placesImported.addTo(map);
         };
-
     allSites = L.geoJSON(contextualSites, {
         onEachFeature: currentLangPlaces
-        //pointToLayer: function (feature, latlng) {
-        //    var markerStyle = {
-        //        fillColor: getColor(feature.properties.Type),
-        //        color: "#FFF",
-        //        fillOpacity: 1,
-        //        opacity: 0.5,
-        //        weight: 1,
-        //        radius: 10
-        //    };
-        //    return L.circleMarker(latlng, markerStyle);
-        //}
     }).addTo(map);
 }
 
-//functions for converting timeline text to numbers
-
+//convert timeline text to numbers
 function getFilterNumber(filter) {
     if (langNumber == 0) {
         return filter == "4th century BCE" ? 0 :
@@ -617,7 +571,6 @@ function getFilterNumber(filter) {
         filter == "2nd century BCE" ? 2 :
         filter == "Roman Period" ? 3 :
         4;
-
     }
     else if (langNumber == 1) {
         return filter == "shekulli 4 p.e.s" ? 0 :
@@ -635,38 +588,24 @@ function getFilterNumber(filter) {
     }
 }
 
-//disable panning while sliding - desktop
-
-slider.noUiSlider.on('start', function(e) {
+//disable panning while moving slider 
+slider.noUiSlider.on('start', function (e) {
+    console.log("sliding started");
   map.dragging.disable();
 });
-
-slider.noUiSlider.on('end', function(e) {
+slider.noUiSlider.on('end', function (e) {
+    console.log("sliding stopped");
 map.dragging.enable();
-
 })
 
 //Disable Slider when zoomed out and remove Phoenike individual locations
-  map.on('zoomend', function() {
-      if (map.getZoom() >14){
-        // To re-enable
-        //eraSlider.removeAttribute('disabled');
-          document.getElementById("sliderunderlay").style.zIndex = "1000";
-          map.addLayer(placesImported);
-
-              }
-        else {
-          //eraSlider.setAttribute('disabled', true);
-          document.getElementById("sliderunderlay").style.zIndex = "-1";
-          map.removeLayer(placesImported);
+map.on('zoomend', function() {
+    if (map.getZoom() > 14) {
+    document.getElementById("sliderunderlay").style.zIndex = "800"; //put slider back
+    map.addLayer(placesImported);
         }
-  });
-
-
-  //Determines color of contextual site points
-  function getColor(type) {
-      return  type == "Site" ? '#000000' :
-          //type == "Finiq"  ? '#880808' :
-          type == "Possible Site" ? '#BF40BF' :
-                          '#252525';
-  }
+else {
+    document.getElementById("sliderunderlay").style.zIndex = "-1";//destroy slider 
+    map.removeLayer(placesImported);
+}
+});

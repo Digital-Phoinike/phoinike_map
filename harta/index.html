@@ -8,22 +8,15 @@
     <script src="./leaflet/leaflet.js"></script>
     <link rel="stylesheet" href="./plugins/Leaflet.Pancontrol/src/L.Control.Pan.css" />
   	<script src="./plugins/Leaflet.Pancontrol/src/L.Control.Pan.js"></script>
-
     <script src="./plugins/Leaflet.fullscreen/dist/Leaflet.fullscreen.min.js"></script>
     <link rel="stylesheet" href="./plugins/Leaflet.fullscreen/dist/leaflet.fullscreen.css" />
-<!--
-    <script src="./plugins/leaflet.fullscreen-master/Control.FullScreen.js"></script>
-    <link rel="stylesheet" href="./plugins/leaflet.fullscreen-master/Control.FullScreen.css" />
-  -->
     <script src="./plugins/Leaflet.Dialog/Leaflet.Dialog.js"></script>
     <link rel="stylesheet" href="./plugins/Leaflet.Dialog/Leaflet.Dialog.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-
     <script src="./paths.js"></script>
     <script src="./buildings.js"></script>
     <script src="./places.js"></script>
-    <script src="./placesAL.js"></script>
     <script src="./walls.js"></script>
     <script src="./streets.js"></script>
     <script src="./entrance.js"></script>
@@ -51,7 +44,6 @@
             color: white;
             font-size: 18px;
             height: 36px;
-
         }
         .leaflet-control-pan a {background-color: rgba(94, 8, 11, .8);}
         .leaflet-control-pan {color:white;}
@@ -64,11 +56,15 @@
         .noUi-value-horizontal {
           display:none;
         }
-        .noUi-horizontal .noUi-tooltip {font-size: 12px;}
-        .noUi-marker-horizontal.noUi-marker-large { height:20px;}
-
-.leaflet-control-dialog{text-align: center; font-size:12px;}
-
+        .noUi-horizontal .noUi-tooltip {
+            font-size: 12px;
+        }
+        .noUi-marker-horizontal.noUi-marker-large {
+            height:20px;
+        }
+        .leaflet-control-dialog{
+            text-align: center; font-size:12px;
+        }
         #sliderunderlay {
             border: 2px solid white;
             border-radius: 6px;
@@ -89,8 +85,6 @@
             left:5%;
             top: 30%;
         }
-
-
     </style>
     <style type="text/css" media="screen">
         html {
